@@ -1,0 +1,18 @@
+name,no.of images,size,annotated,annotation type,regions,classes,platform,sensor,availability,environment,link
+MARIDA,1381,NA,NA,NA,NA,NA,NA,NA,Available,Surface,https://zenodo.org/records/5151941
+trash-icra19,5700,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://conservancy.umn.edu/items/c34b2945-4052-48fa-b7e7-ce0fba2fe649
+TrashCan 1.0,7212,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7
+DeepPlastic,1900,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://zenodo.org/records/5562940
+PlastOPol,2418,NA,NA,NA,NA,NA,NA,NA,Available,NA,https://zenodo.org/records/5829156
+CleanSea,1223,NA,NA,NA,NA,NA,NA,NA,Available,Surface,https://www.dlsi.ua.es/~jgallego/datasets/cleansea/
+e-CleanSea,990,NA,NA,NA,NA,NA,NA,NA,Available,Surface,https://www.dlsi.ua.es/~jgallego/datasets/cleansea/
+mvaldenegro (github),N/A,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://github.com/mvaldenegro/marine-debris-fls-datasets/tree/master/md_fls_dataset
+SeaClear,8610,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://www.kaggle.com/datasets/jocelyndumlao/seaclear-marine-debris-detection-and-segmentation
+MADOS,N/A,NA,NA,NA,NA,NA,NA,NA,Available,NA,https://www.kaggle.com/datasets/kaushalmaniyar/mados-marine-debris-and-oil-spill
+Underwater Plastic Pollution Detection,5030,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://www.kaggle.com/datasets/arnavs19/underwater-plastic-pollution-detection
+Marine Debris Images Dataset,575,NA,NA,NA,NA,NA,NA,NA,Available,NA,https://www.kaggle.com/datasets/zienabesam/marine-debris-images-dataset
+Marine Plastic Pollution,2150,NA,NA,NA,NA,NA,NA,NA,Available,NA,https://www.kaggle.com/datasets/surajit651/souvikdataset
+Underwater Trash Detection,9576,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://www.kaggle.com/datasets/karanwxlia/underwater-trash-detection
+RealOcean Garbage,7201,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://www.kaggle.com/datasets/amankamath/realocean-garbage
+Underwater Trash Detection_2,5700,NA,NA,NA,NA,NA,NA,NA,Available,Underwater,https://www.kaggle.com/datasets/shivamb/underwater-trash-detection
+NASA,N/A,NA,NA,NA,NA,NA,NA,NA,Available,Surface,https://source.coop/nasa/marine-debris
