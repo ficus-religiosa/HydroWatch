@@ -6,8 +6,8 @@
         "DeepPlastic":{"https://zenodo.org/records/5562940":1900},
         "PlastOPol":{"https://zenodo.org/records/5829156": 2418},
         "CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":1223},
-        "e-CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":990}
-        
+        "e-CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":990},
+        "NASA":{"https://source.coop/nasa/marine-debris":"N/A"}
 
     } 
 
