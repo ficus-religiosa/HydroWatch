@@ -22,7 +22,8 @@
     "platform": "ROV",
     "sensor": "RBG Underwater Cam",
     "availability": "Available",
-    "environment": "Underwater"
+    "environment": "Underwater",
+    "DSNo":"N/A"
   },
   "TrashCan 1.0": {
     "link": "https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7",
@@ -35,7 +36,8 @@
     "platform": "ROV",
     "sensor": "RGB",
     "availability": "Available",
-    "environment": "Underwater"
+    "environment": "Underwater",
+    "DSNo":"N/A"
   },
   "DeepPlastic": {
     "link": "https://zenodo.org/records/5562940",
@@ -45,31 +47,32 @@
     "annotation type": "Bounding boxes",
     "regions": "California, USA & Japan (few)",
     "classes": "1 ",
-    "platform": "",
-    "sensor": "NA",
+    "platform": "ROV",
+    "sensor": "RBG",
     "availability": "Available",
-    "environment": "Underwater"
+    "environment": "Underwater",
+    "DSNo":"N/A"
   },
   "PlastOPol": {
     "link": "https://zenodo.org/records/5829156",
     "no.of images": 2418,
-    "annotated": "NA",
-    "regions": "NA",
-    "classes": "NA",
-    "platform": "NA",
-    "sensor": "NA",
+    "annotated": "YES",
+    "regions": "Multiple",
+    "classes": "Litter",
+    "platform": "ROV",
+    "sensor": "RGB",
     "availability": "Available",
-    "environment": "NA",
+    "environment": "Not Underwater",
     "DSNo":"N/A"
   },
   "CleanSea": {
     "link": "https://www.dlsi.ua.es/~jgallego/datasets/cleansea/",
     "no.of images": 1223,
-    "annotated": "NA",
-    "regions": "NA",
-    "classes": "NA",
+    "annotated": "YES",
+    "regions": "Instance Segmentation",
+    "classes": "19",
     "platform": "NA",
-    "sensor": "NA",
+    "sensor": "RGB",
     "availability": "Available",
     "environment": "Surface",
     "DSNo":"N/A"
