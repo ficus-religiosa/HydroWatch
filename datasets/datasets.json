@@ -18,7 +18,7 @@
     "annotated": "YES",
     "annotation type": "Bounding boxes",
     "regions": "Japan",
-    "classes": "3",
+    "classes": "bio , rover, platic",
     "platform": "ROV",
     "sensor": "RBG Underwater Cam",
     "availability": "Available",
