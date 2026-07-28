@@ -6,9 +6,16 @@
         "DeepPlastic":{"https://zenodo.org/records/5562940":1900},
         "PlastOPol":{"https://zenodo.org/records/5829156": 2418},
         "CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":1223},
-        "e-CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":990}
-        
-
+        "e-CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":990},
+        "mvaldenegro(github)": {"https://github.com/mvaldenegro/marine-debris-fls-datasets/tree/master/md_fls_dataset":"N/A"},
+        "seaclear": {"https://www.kaggle.com/datasets/jocelyndumlao/seaclear-marine-debris-detection-and-segmentation":8610},
+        "mados": {"https://www.kaggle.com/datasets/kaushalmaniyar/mados-marine-debris-and-oil-spill":"N/A"},
+        "Underwater Plastic Pollution Detection": {"https://www.kaggle.com/datasets/arnavs19/underwater-plastic-pollution-detection":5030},
+        "Marine Debris Images Dataset": {"https://www.kaggle.com/datasets/zienabesam/marine-debris-images-dataset":575},
+        "Marine Plastic Pollution": {"https://www.kaggle.com/datasets/surajit651/souvikdataset":2150},
+        "Underwater Trash Detection": {"https://www.kaggle.com/datasets/karanwxlia/underwater-trash-detection":9576},
+        "RealOcean Garbage": {"https://www.kaggle.com/datasets/amankamath/realocean-garbage":7201},
+        "Underwater Trash Detection": {"https://www.kaggle.com/datasets/shivamb/underwater-trash-detection":5700}
     } 
 
 }
