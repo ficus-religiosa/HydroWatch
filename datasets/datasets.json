@@ -1,0 +1,14 @@
+{
+    "sources": {
+        "MARIDA": {"https://zenodo.org/records/5151941":  1381},
+        "trash-icra19":{"https://conservancy.umn.edu/items/c34b2945-4052-48fa-b7e7-ce0fba2fe649": 5700},
+        "TrashCan 1.0 ":{"https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7":7212},
+        "DeepPlastic":{"https://zenodo.org/records/5562940":1900},
+        "PlastOPol":{"https://zenodo.org/records/5829156": 2418},
+        "CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":1223},
+        "e-CleanSea":{"https://www.dlsi.ua.es/~jgallego/datasets/cleansea/":990}
+        
+
+    } 
+
+}
