@@ -9,7 +9,8 @@
     "sensor": "NA",
     "availability": "Available",
     "environment": "Surface",
-    "DSNo":"N/A"
+    "DSNo":"N/A",
+    "HI":"N/A"
   },
   "trash-icra19": {
     "link": "https://conservancy.umn.edu/items/c34b2945-4052-48fa-b7e7-ce0fba2fe649",
@@ -195,7 +196,7 @@
     "sensor": "NA",
     "availability": "Available",
     "environment": "Underwater",
-    "DSNo":"N/A"
+    "DSNo":"N/A",
   },
   "NASA": {
     "link": "https://source.coop/nasa/marine-debris",
@@ -208,5 +209,18 @@
     "availability": "Available",
     "environment": "Surface",
     "DSNo":"N/A"
-  }
+  },
+  "J-Litter": {
+  "link": "https://www.godac.jamstec.go.jp/dsdebris/e/dataset/j-litter.html",
+  "no.of images": 10000,
+  "annotated": "YES",
+  "annotation type": "Bounding Boxes (COCO format)",
+  "regions": "Deep-sea survey locations",
+  "classes": "5 - plastic-film, plastic-bottle, beverage-can, other-metal, others",
+  "platform": "Shinkai 6500 / Hyper-Dolphin / Deep-sea survey platforms",
+  "sensor": "Deep-sea RGB camera",
+  "availability": "Available",
+  "environment": "Deep Underwater",
+  "DSNo": "N/A"
+}
 }
