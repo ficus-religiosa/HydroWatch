@@ -71,11 +71,11 @@
     "annotated": "YES",
     "regions": "Instance Segmentation",
     "classes": "19",
-    "platform": "NA",
+    "platform": "Satellite",
     "sensor": "RGB",
     "availability": "Available",
-    "environment": "Surface",
-    "DSNo":"N/A"
+    "environment": "Underwater",
+    "DSNo":"3"
   },
   "e-CleanSea": {
     "link": "https://www.dlsi.ua.es/~jgallego/datasets/cleansea/",
