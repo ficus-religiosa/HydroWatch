@@ -35,7 +35,7 @@
   },
   "TrashCan 1.0": {
     "link": "https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7",
-    "rejected":"No",
+    "rejected":"Approved",
     "no.of images": 7212,
     "size": "480 × 360",
     "annotated": "YES",
@@ -132,7 +132,7 @@
   },
   "SeaClear": {
     "link": "https://www.kaggle.com/datasets/jocelyndumlao/seaclear-marine-debris-detection-and-segmentation",
-    "rejected":"N/A",
+    "rejected":"Approved",
     "no.of images": 8610,
     "annotated": "YES (COCO)",
     "regions": "Croatia,France",
@@ -180,7 +180,7 @@
   },
   "Marine Debris Images Dataset": {
     "link": "https://www.kaggle.com/datasets/zienabesam/marine-debris-images-dataset",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 575,
     "annotated": "NA",
     "regions": "NA",
@@ -191,12 +191,12 @@
     "environment": "NA",
     "DSNo":"N/A",
     "media type":"N/A",
-    "genreated/synth":"N/A",
+    "genreated/synth":"YES",
     "source":"N/A"
   },
   "Marine Plastic Pollution": {
     "link": "https://www.kaggle.com/datasets/surajit651/souvikdataset",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 2150,
     "annotated": "NA",
     "regions": "NA",
@@ -228,7 +228,7 @@
   },
   "RealOcean Garbage": {
     "link": "https://www.kaggle.com/datasets/amankamath/realocean-garbage",
-    "rejected":"N/A",
+    "rejected":"YES - LOW QUALITY",
     "no.of images": 7201,
     "annotated": "NA",
     "regions": "NA",
