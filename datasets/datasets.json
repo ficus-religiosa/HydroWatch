@@ -164,7 +164,7 @@
   },
   "Underwater Plastic Pollution Detection": {
     "link": "https://www.kaggle.com/datasets/arnavs19/underwater-plastic-pollution-detection",
-    "rejected":"N/A",
+    "rejected":"Approved",
     "no.of images": 5030,
     "annotated": "NA",
     "regions": "NA",
@@ -212,7 +212,7 @@
   },
   "Underwater Trash Detection": {
     "link": "https://www.kaggle.com/datasets/karanwxlia/underwater-trash-detection",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 9576,
     "annotated": "NA",
     "regions": "NA",
