@@ -244,7 +244,7 @@
   },
   "Underwater Trash Detection_2": {
     "link": "https://www.kaggle.com/datasets/shivamb/underwater-trash-detection",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 5700,
     "annotated": "NA",
     "regions": "NA",
@@ -292,7 +292,7 @@
   },
 "J-Litter": {
 "link": "https://www.godac.jamstec.go.jp/dsdebris/e/dataset/j-litter.html",
-"rejected":"N/A",
+"rejected":"YES",
   "no.of images": 10000,
   "annotated": "YES",
   "annotation type": "Bounding Boxes (COCO format)",
