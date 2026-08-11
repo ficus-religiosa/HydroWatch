@@ -100,7 +100,7 @@
   },
   "e-CleanSea": {
     "link": "https://www.dlsi.ua.es/~jgallego/datasets/cleansea/",
-    "rejected":"likely",
+    "rejected":"yes",
     "no.of images": 990,
     "annotated": "NA",
     "regions": "NA",
@@ -148,7 +148,7 @@
   },
   "MADOS": {
     "link": "https://www.kaggle.com/datasets/kaushalmaniyar/mados-marine-debris-and-oil-spill",
-    "rejected":"N/A",
+    "rejected":"yes",
     "no.of images": "N/A",
     "annotated": "NA",
     "regions": "NA",
@@ -156,7 +156,7 @@
     "platform": "NA",
     "sensor": "NA",
     "availability": "Available",
-    "environment": "NA",
+    "environment": "Satelite",
     "DSNo":"N/A",
     "media type":"N/A",
     "genreated/synth":"N/A",
