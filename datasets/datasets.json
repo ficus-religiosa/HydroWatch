@@ -1,4 +1,78 @@
 {
+
+  "metadata": {
+    "aggregate": {
+      
+      "accepted_count": 4,
+      "rejected_count": 13,
+      "undetermined_status_count": 2,
+      "total_images_accepted_documented_optical_rgb": 20852,
+      "modality_breakdown_accepted": {
+        "rgb_optical": 3,
+        "acoustic_sonar_fls": 1
+      },
+      "accepted": [
+        {
+          "name": "TrashCan 1.0",
+          "link": "https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7",
+          "no_of_images": 7212,
+          "size": "480x360",
+          "annotated": true,
+          "annotation_type": "Bounding box + instance segmentation",
+          "classes": "22 instance-level / 16 material-level",
+          "platform": "ROV",
+          "sensor": "RGB",
+          "environment": "Underwater (field, deep-sea)",
+          "region": "Sea of Japan",
+          "source": "JAMSTEC J-EDI",
+          "note": "Very likely a superset of Trash-ICRA19 (same lab, same archive, described as an extension). If Trash-ICRA19 is ever also marked accepted, do not train on both without a perceptual-dedup pass — see prior overlap discussion."
+        },
+        {
+          "name": "mvaldenegro FLS marine debris datasets",
+          "link": "https://github.com/mvaldenegro/marine-debris-fls-datasets/tree/master/md_fls_dataset",
+          "no_of_images": "Not a single number — multiple sub-releases: 1868 (segmentation, 11 classes + background), 1505 train / 645 test (water-tank detection, 10 classes, bbox+JSON), 39840/7440 (patch-matching task, not detection)",
+          "annotated": true,
+          "annotation_type": "Bounding box (JSON) for detection subset; per-pixel masks for segmentation subset",
+          "classes": "10-11 depending on subset (bottle, can, chain, drink carton, hook, propeller, shampoo bottle, standing bottle, tire, valve)",
+          "platform": "Fixed sonar rig / turntable",
+          "sensor": "ARIS Explorer 3000 Forward-Looking Sonar (acoustic, grayscale) — not RGB",
+          "environment": "Underwater, but controlled water tank (Ocean Systems Lab, Heriot-Watt), not open ocean",
+          "region": "Lab, UK",
+          "source": "N/A",
+          "note": "Completely different sensor modality and completely different capture environment from every other entry in your sheet. Cannot share a preprocessing pipeline, backbone, or dataloader with your RGB/YOLOv11 stack without a dedicated sonar branch. Also lab-tank data, not field data — a model trained here says nothing about open-water performance. Its 'accepted' status needs a stated reason: is this in scope for a multi-sensor fusion angle, or was it approved without checking what it actually is?"
+        },
+        {
+          "name": "SeaClear",
+          "link": "https://www.kaggle.com/datasets/jocelyndumlao/seaclear-marine-debris-detection-and-segmentation",
+          "no_of_images": 8610,
+          "annotated": true,
+          "annotation_type": "COCO (polygon segmentation + bounding box)",
+          "classes": 40,
+          "platform": "ROV",
+          "sensor": "RGB, 1920x1080",
+          "environment": "Underwater, shallow-water field trials",
+          "region": "Croatia, France",
+          "source": "EU Horizon SeaClear project — independent of JAMSTEC",
+          "note": "This is your one confirmed-independent evaluation set relative to the JAMSTEC lineage (TrashCan/Trash-ICRA19/CleanSea/DeepPlastic-partial). Sourced via a Kaggle mirror, not the original release — cross-check the mirror against the official Scientific Data paper's file counts/classes before trusting it; Kaggle re-uploads have a track record of dropping metadata or mislabeling. Also 40 classes on 8,610 images will have a severe long tail — pull per-class counts before assuming this is usable as-is."
+        },
+        {
+          "name": "Underwater Plastic Pollution Detection",
+          "link": "https://www.kaggle.com/datasets/arnavs19/underwater-plastic-pollution-detection",
+          "no_of_images": 5030,
+          "annotated": "NA in sheet",
+          "annotation_type": "NA in sheet",
+          "classes": "NA in sheet",
+          "platform": "NA in sheet",
+          "sensor": "NA in sheet",
+          "environment": "NA in sheet",
+          "region": "NA in sheet",
+          "source": "NA in sheet",
+          "note": "Every field is unfilled and it's still marked Approved. That is not an approved dataset, that's an un-vetted one. You cannot count these 5,030 images toward anything until annotation format, class list, and provenance are confirmed by actually opening the archive."
+        }
+      ]
+    }
+  },
+
   "MARIDA": {
     "link": "https://zenodo.org/records/5151941",
     "rejected":"yes",
