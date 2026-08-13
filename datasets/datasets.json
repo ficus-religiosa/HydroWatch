@@ -15,6 +15,7 @@
         {
           "name": "TrashCan 1.0",
           "link": "https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7",
+          "DS":1,
           "no_of_images": 7212,
           "size": "480x360",
           "annotated": true,
@@ -30,6 +31,7 @@
         {
           "name": "mvaldenegro FLS marine debris datasets",
           "link": "https://github.com/mvaldenegro/marine-debris-fls-datasets/tree/master/md_fls_dataset",
+          
           "no_of_images": "Not a single number — multiple sub-releases: 1868 (segmentation, 11 classes + background), 1505 train / 645 test (water-tank detection, 10 classes, bbox+JSON), 39840/7440 (patch-matching task, not detection)",
           "annotated": true,
           "annotation_type": "Bounding box (JSON) for detection subset; per-pixel masks for segmentation subset",
@@ -44,6 +46,7 @@
         {
           "name": "SeaClear",
           "link": "https://www.kaggle.com/datasets/jocelyndumlao/seaclear-marine-debris-detection-and-segmentation",
+          "DS":3,
           "no_of_images": 8610,
           "annotated": true,
           "annotation_type": "COCO (polygon segmentation + bounding box)",
@@ -58,6 +61,7 @@
         {
           "name": "Underwater Plastic Pollution Detection",
           "link": "https://www.kaggle.com/datasets/arnavs19/underwater-plastic-pollution-detection",
+          "DS":4,
           "no_of_images": 5030,
           "annotated": "NA in sheet",
           "annotation_type": "NA in sheet",
