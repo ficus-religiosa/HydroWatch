@@ -3,19 +3,22 @@ import torch.nn as nn
 from .frontend import FrontEnd
 from .backbone import YOLO11SBackbone
 from .neck import PANFPN
-from .heads import MultiScaleDetectionHead, AuxiliaryMaskHead
+from .heads import (
+    MultiScaleDetectionHead,
+    AuxiliaryMaskHead
+)
 
 
 class HydroWatch(nn.Module):
     """
-    Complete Marine Debris detection architecture.
+    Complete HydroWatch marine-debris detector.
 
     Input:
         RGB [B,3,H,W]
 
     Output:
-        Multi-scale detection predictions
-        + optional auxiliary mask prediction.
+        raw + decoded multi-scale detection predictions,
+        feature maps, and optional auxiliary mask logits.
     """
 
     def __init__(
@@ -45,25 +48,41 @@ class HydroWatch(nn.Module):
             else None
         )
 
-    def forward(self, x, return_masks=None):
+    def forward(
+        self,
+        x,
+        return_masks=None
+    ):
         if return_masks is None:
             return_masks = (
-                self.training and self.enable_mask_head
+                self.training
+                and self.enable_mask_head
             )
 
         input_size = x.shape[-2:]
 
         x = self.frontend(x)
+
         backbone_features = self.backbone(x)
-        neck_features = self.neck(backbone_features)
-        detections = self.detection_head(neck_features)
+
+        neck_features = self.neck(
+            backbone_features
+        )
+
+        detections = self.detection_head(
+            neck_features,
+            image_size=input_size
+        )
 
         output = {
             "detections": detections,
             "features": neck_features
         }
 
-        if return_masks and self.mask_head is not None:
+        if (
+            return_masks
+            and self.mask_head is not None
+        ):
             output["mask_logits"] = self.mask_head(
                 neck_features["p2"],
                 input_size

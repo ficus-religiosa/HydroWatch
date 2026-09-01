@@ -1,31 +1,65 @@
+import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 
 class ResidualEnhancement(nn.Module):
     """
-    Lightweight learned enhancement transform.
+    Deterministic, parameter-free residual enhancement transform.
+
+    A fixed Gaussian blur estimates the low-frequency component.
+    The high-frequency residual is:
+        residual = x - GaussianBlur(x)
 
     Input:
         [B, 3, H, W]
 
     Output:
         [B, 3, H, W]
+
+    No trainable parameters are used.
     """
 
-    def __init__(self, channels=3):
+    def __init__(self, channels=3, kernel_size=5, sigma=1.0):
         super().__init__()
 
-        self.body = nn.Sequential(
-            nn.Conv2d(channels, 16, kernel_size=3, padding=1, bias=False),
-            nn.BatchNorm2d(16),
-            nn.SiLU(),
+        if channels != 3:
+            raise ValueError("ResidualEnhancement is defined for RGB input (3 channels).")
+        if kernel_size % 2 == 0:
+            raise ValueError("kernel_size must be odd.")
 
-            nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False),
-            nn.BatchNorm2d(16),
-            nn.SiLU(),
+        radius = kernel_size // 2
+        coords = torch.arange(
+            -radius, radius + 1, dtype=torch.float32
+        )
+        yy, xx = torch.meshgrid(coords, coords, indexing="ij")
 
-            nn.Conv2d(16, channels, kernel_size=3, padding=1, bias=False)
+        kernel = torch.exp(
+            -(xx.pow(2) + yy.pow(2)) / (2 * sigma * sigma)
+        )
+        kernel = kernel / kernel.sum()
+
+        self.register_buffer(
+            "gaussian_kernel",
+            kernel.view(1, 1, kernel_size, kernel_size).repeat(
+                channels, 1, 1, 1
+            )
         )
 
+        self.channels = channels
+        self.padding = radius
+
     def forward(self, x):
-        return self.body(x)
+        if x.ndim != 4 or x.shape[1] != self.channels:
+            raise ValueError(
+                f"Expected [B,{self.channels},H,W], got {tuple(x.shape)}"
+            )
+
+        low_frequency = F.conv2d(
+            x,
+            self.gaussian_kernel.to(dtype=x.dtype),
+            padding=self.padding,
+            groups=self.channels
+        )
+
+        return x - low_frequency

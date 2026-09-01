@@ -1,14 +1,33 @@
 import torch
 
 
+def xyxy_to_xywh(boxes):
+    x1, y1, x2, y2 = boxes.unbind(-1)
+
+    return torch.stack(
+        [
+            (x1 + x2) / 2,
+            (y1 + y2) / 2,
+            (x2 - x1).clamp(min=0),
+            (y2 - y1).clamp(min=0)
+        ],
+        dim=-1
+    )
+
+
 def xywh_to_gaussian(boxes):
     center = boxes[..., :2]
     width_height = boxes[..., 2:4]
+
     variance = width_height.pow(2) / 12.0
+
     return center, variance
 
 
 def nwd_distance(pred_boxes, target_boxes, eps=1e-7):
+    pred_boxes = xyxy_to_xywh(pred_boxes)
+    target_boxes = xyxy_to_xywh(target_boxes)
+
     p_mean, p_var = xywh_to_gaussian(pred_boxes)
     t_mean, t_var = xywh_to_gaussian(target_boxes)
 
@@ -26,13 +45,35 @@ def nwd_distance(pred_boxes, target_boxes, eps=1e-7):
     )
 
 
-def nwd_similarity(pred_boxes, target_boxes, scale=12.8):
-    distance = nwd_distance(pred_boxes, target_boxes)
-    return torch.exp(-distance / scale)
+def nwd_similarity(
+    pred_boxes,
+    target_boxes,
+    scale=12.8
+):
+    distance = nwd_distance(
+        pred_boxes,
+        target_boxes
+    )
+
+    return torch.exp(
+        -distance / scale
+    )
 
 
 class NWDAssigner:
-    def __init__(self, top_k=10, nwd_scale=12.8):
+    """
+    Top-k NWD assignment.
+
+    One prediction is assigned to at most one GT.
+    If two GTs compete for the same prediction,
+    the higher NWD similarity wins.
+    """
+
+    def __init__(
+        self,
+        top_k=10,
+        nwd_scale=12.8
+    ):
         self.top_k = top_k
         self.nwd_scale = nwd_scale
 
@@ -59,36 +100,49 @@ class NWDAssigner:
         similarity = nwd_similarity(
             pred_boxes,
             target_boxes,
-            self.nwd_scale
+            scale=self.nwd_scale
         )
 
-        if pred_scores.dim() == 2:
-            class_conf = pred_scores[:, target_labels]
-        else:
-            class_conf = pred_scores
+        if pred_scores is not None:
+            if pred_scores.ndim != 2:
+                raise ValueError(
+                    "pred_scores must be [N,C]."
+                )
 
-        if class_conf.dim() == 2:
-            cls_score = class_conf.clamp(min=1e-6).mean(dim=-1)
-            combined = similarity * cls_score[:, None]
+            gt_scores = pred_scores[
+                :,
+                target_labels
+            ]
+
+            combined = similarity * gt_scores
         else:
             combined = similarity
 
-        for gt_index in range(target_boxes.shape[0]):
+        for gt_index in range(
+            target_boxes.shape[0]
+        ):
             scores = combined[:, gt_index]
-            k = min(self.top_k, num_predictions)
+            k = min(
+                self.top_k,
+                num_predictions
+            )
 
-            _, indices = torch.topk(scores, k=k)
+            _, indices = torch.topk(
+                scores,
+                k=k,
+                largest=True
+            )
 
-            for idx in indices:
-                current = assigned_gt[idx]
+            for idx in indices.tolist():
+                previous = assigned_gt[idx].item()
 
-                if current < 0:
+                if previous < 0:
                     assigned_gt[idx] = gt_index
                 else:
-                    current_score = similarity[idx, current]
-                    new_score = similarity[idx, gt_index]
-
-                    if new_score > current_score:
+                    if (
+                        similarity[idx, gt_index]
+                        > similarity[idx, previous]
+                    ):
                         assigned_gt[idx] = gt_index
 
         return assigned_gt
