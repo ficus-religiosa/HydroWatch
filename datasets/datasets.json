@@ -1,4 +1,82 @@
 {
+
+  "metadata": {
+    "aggregate": {
+      
+      "accepted_count": 4,
+      "rejected_count": 13,
+      "undetermined_status_count": 2,
+      "total_images_accepted_documented_optical_rgb": 20852,
+      "modality_breakdown_accepted": {
+        "rgb_optical": 3,
+        "acoustic_sonar_fls": 1
+      },
+      "accepted": [
+        {
+          "name": "TrashCan 1.0",
+          "link": "https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7",
+          "DS":1,
+          "no_of_images": 7212,
+          "size": "480x360",
+          "annotated": true,
+          "annotation_type": "Bounding box + instance segmentation",
+          "classes": "22 instance-level / 16 material-level",
+          "platform": "ROV",
+          "sensor": "RGB",
+          "environment": "Underwater (field, deep-sea)",
+          "region": "Sea of Japan",
+          "source": "JAMSTEC J-EDI",
+          "note": "Very likely a superset of Trash-ICRA19 (same lab, same archive, described as an extension). If Trash-ICRA19 is ever also marked accepted, do not train on both without a perceptual-dedup pass — see prior overlap discussion."
+        },
+        {
+          "name": "mvaldenegro FLS marine debris datasets",
+          "link": "https://github.com/mvaldenegro/marine-debris-fls-datasets/tree/master/md_fls_dataset",
+          
+          "no_of_images": "Not a single number — multiple sub-releases: 1868 (segmentation, 11 classes + background), 1505 train / 645 test (water-tank detection, 10 classes, bbox+JSON), 39840/7440 (patch-matching task, not detection)",
+          "annotated": true,
+          "annotation_type": "Bounding box (JSON) for detection subset; per-pixel masks for segmentation subset",
+          "classes": "10-11 depending on subset (bottle, can, chain, drink carton, hook, propeller, shampoo bottle, standing bottle, tire, valve)",
+          "platform": "Fixed sonar rig / turntable",
+          "sensor": "ARIS Explorer 3000 Forward-Looking Sonar (acoustic, grayscale) — not RGB",
+          "environment": "Underwater, but controlled water tank (Ocean Systems Lab, Heriot-Watt), not open ocean",
+          "region": "Lab, UK",
+          "source": "N/A",
+          "note": "Completely different sensor modality and completely different capture environment from every other entry in your sheet. Cannot share a preprocessing pipeline, backbone, or dataloader with your RGB/YOLOv11 stack without a dedicated sonar branch. Also lab-tank data, not field data — a model trained here says nothing about open-water performance. Its 'accepted' status needs a stated reason: is this in scope for a multi-sensor fusion angle, or was it approved without checking what it actually is?"
+        },
+        {
+          "name": "SeaClear",
+          "link": "https://www.kaggle.com/datasets/jocelyndumlao/seaclear-marine-debris-detection-and-segmentation",
+          "DS":3,
+          "no_of_images": 8610,
+          "annotated": true,
+          "annotation_type": "COCO (polygon segmentation + bounding box)",
+          "classes": 40,
+          "platform": "ROV",
+          "sensor": "RGB, 1920x1080",
+          "environment": "Underwater, shallow-water field trials",
+          "region": "Croatia, France",
+          "source": "EU Horizon SeaClear project — independent of JAMSTEC",
+          "note": "This is your one confirmed-independent evaluation set relative to the JAMSTEC lineage (TrashCan/Trash-ICRA19/CleanSea/DeepPlastic-partial). Sourced via a Kaggle mirror, not the original release — cross-check the mirror against the official Scientific Data paper's file counts/classes before trusting it; Kaggle re-uploads have a track record of dropping metadata or mislabeling. Also 40 classes on 8,610 images will have a severe long tail — pull per-class counts before assuming this is usable as-is."
+        },
+        {
+          "name": "Underwater Plastic Pollution Detection",
+          "link": "https://www.kaggle.com/datasets/arnavs19/underwater-plastic-pollution-detection",
+          "DS":4,
+          "no_of_images": 5030,
+          "annotated": "NA in sheet",
+          "annotation_type": "NA in sheet",
+          "classes": "NA in sheet",
+          "platform": "NA in sheet",
+          "sensor": "NA in sheet",
+          "environment": "NA in sheet",
+          "region": "NA in sheet",
+          "source": "NA in sheet",
+          "note": "Every field is unfilled and it's still marked Approved. That is not an approved dataset, that's an un-vetted one. You cannot count these 5,030 images toward anything until annotation format, class list, and provenance are confirmed by actually opening the archive."
+        }
+      ]
+    }
+  },
+
   "MARIDA": {
     "link": "https://zenodo.org/records/5151941",
     "rejected":"yes",
@@ -35,7 +113,7 @@
   },
   "TrashCan 1.0": {
     "link": "https://conservancy.umn.edu/items/6dd6a960-c44a-4510-a679-efb8c82ebfb7",
-    "rejected":"yes",
+    "rejected":"Approved",
     "no.of images": 7212,
     "size": "480 × 360",
     "annotated": "YES",
@@ -53,7 +131,7 @@
   },
   "DeepPlastic": {
     "link": "https://zenodo.org/records/5562940",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 1900,
     "size": "Variable",
     "annotated": "YES",
@@ -71,7 +149,7 @@
   },
   "PlastOPol": {
     "link": "https://zenodo.org/records/5829156",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 2418,
     "annotated": "YES",
     "regions": "Multiple",
@@ -87,23 +165,20 @@
   },
   "CleanSea": {
     "link": "https://www.dlsi.ua.es/~jgallego/datasets/cleansea/",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 1223,
     "annotated": "YES",
     "regions": "Instance Segmentation",
     "classes": "19",
-    "platform": "NA",
+    "platform": "Satellite",
     "sensor": "RGB",
     "availability": "Available",
     "environment": "Surface",
-    "DSNo":"N/A",
-    "media type":"N/A",
-    "genreated/synth":"N/A",
-    "source":"JAMSTEC"
+    "DSNo":"N/A"
   },
   "e-CleanSea": {
     "link": "https://www.dlsi.ua.es/~jgallego/datasets/cleansea/",
-    "rejected":"likely",
+    "rejected":"yes",
     "no.of images": 990,
     "annotated": "NA",
     "regions": "NA",
@@ -119,7 +194,7 @@
   },
   "mvaldenegro (github)": {
     "link": "https://github.com/mvaldenegro/marine-debris-fls-datasets/tree/master/md_fls_dataset",
-    "rejected":"N/A",
+    "rejected":"NO",
     "no.of images": "N/A",
     "annotated": "NA",
     "regions": "NA",
@@ -135,23 +210,23 @@
   },
   "SeaClear": {
     "link": "https://www.kaggle.com/datasets/jocelyndumlao/seaclear-marine-debris-detection-and-segmentation",
-    "rejected":"N/A",
+    "rejected":"Approved",
     "no.of images": 8610,
-    "annotated": "NA",
-    "regions": "NA",
-    "classes": "NA",
-    "platform": "NA",
-    "sensor": "NA",
+    "annotated": "YES (COCO)",
+    "regions": "Croatia,France",
+    "classes": "40",
+    "platform": "ROV",
+    "sensor": "N/A",
     "availability": "Available",
     "environment": "Underwater",
-    "DSNo":"N/A",
-    "media type":"N/A",
-    "genreated/synth":"N/A",
+    "DSNo":"2",
+    "media type":".jpg",
+    "genreated/synth":"NO",
     "source":"N/A"
   },
   "MADOS": {
     "link": "https://www.kaggle.com/datasets/kaushalmaniyar/mados-marine-debris-and-oil-spill",
-    "rejected":"N/A",
+    "rejected":"yes",
     "no.of images": "N/A",
     "annotated": "NA",
     "regions": "NA",
@@ -159,7 +234,7 @@
     "platform": "NA",
     "sensor": "NA",
     "availability": "Available",
-    "environment": "NA",
+    "environment": "Satelite",
     "DSNo":"N/A",
     "media type":"N/A",
     "genreated/synth":"N/A",
@@ -167,7 +242,7 @@
   },
   "Underwater Plastic Pollution Detection": {
     "link": "https://www.kaggle.com/datasets/arnavs19/underwater-plastic-pollution-detection",
-    "rejected":"N/A",
+    "rejected":"Approved",
     "no.of images": 5030,
     "annotated": "NA",
     "regions": "NA",
@@ -183,7 +258,7 @@
   },
   "Marine Debris Images Dataset": {
     "link": "https://www.kaggle.com/datasets/zienabesam/marine-debris-images-dataset",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 575,
     "annotated": "NA",
     "regions": "NA",
@@ -194,12 +269,12 @@
     "environment": "NA",
     "DSNo":"N/A",
     "media type":"N/A",
-    "genreated/synth":"N/A",
+    "genreated/synth":"YES",
     "source":"N/A"
   },
   "Marine Plastic Pollution": {
     "link": "https://www.kaggle.com/datasets/surajit651/souvikdataset",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 2150,
     "annotated": "NA",
     "regions": "NA",
@@ -215,7 +290,7 @@
   },
   "Underwater Trash Detection": {
     "link": "https://www.kaggle.com/datasets/karanwxlia/underwater-trash-detection",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 9576,
     "annotated": "NA",
     "regions": "NA",
@@ -231,7 +306,7 @@
   },
   "RealOcean Garbage": {
     "link": "https://www.kaggle.com/datasets/amankamath/realocean-garbage",
-    "rejected":"N/A",
+    "rejected":"YES - LOW QUALITY",
     "no.of images": 7201,
     "annotated": "NA",
     "regions": "NA",
@@ -247,7 +322,7 @@
   },
   "Underwater Trash Detection_2": {
     "link": "https://www.kaggle.com/datasets/shivamb/underwater-trash-detection",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": 5700,
     "annotated": "NA",
     "regions": "NA",
@@ -263,7 +338,7 @@
   },
   "NASA": {
     "link": "https://source.coop/nasa/marine-debris",
-    "rejected":"N/A",
+    "rejected":"YES",
     "no.of images": "N/A",
     "annotated": "NA",
     "regions": "NA",
@@ -279,7 +354,7 @@
   },
   "DUO": {
     "link": "https://drive.google.com/file/d/1w-bWevH7jFs7A1bIBlAOvXOxe2OFSHHs/view",
-    "rejected":"N/A",
+    "rejected":"need to see",
     "no.of images": "N/A",
     "annotated": "NA",
     "regions": "NA",
@@ -295,7 +370,7 @@
   },
 "J-Litter": {
 "link": "https://www.godac.jamstec.go.jp/dsdebris/e/dataset/j-litter.html",
-"rejected":"N/A",
+"rejected":"YES",
   "no.of images": 10000,
   "annotated": "YES",
   "annotation type": "Bounding Boxes (COCO format)",
