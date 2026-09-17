@@ -3,89 +3,35 @@ import torch.nn as nn
 from .frontend import FrontEnd
 from .backbone import YOLO11SBackbone
 from .neck import PANFPN
-from .heads import (
-    MultiScaleDetectionHead,
-    AuxiliaryMaskHead
-)
+from .heads import MultiScaleDetectionHead
 
 
 class HydroWatch(nn.Module):
-    """
-    Complete HydroWatch marine-debris detector.
+    """HydroWatch lightweight multi-scale marine-debris detector."""
 
-    Input:
-        RGB [B,3,H,W]
-
-    Output:
-        raw + decoded multi-scale detection predictions,
-        feature maps, and optional auxiliary mask logits.
-    """
-
-    def __init__(
-        self,
-        num_classes=1,
-        reg_max=16,
-        enable_mask_head=True
-    ):
+    def __init__(self, num_classes=1, reg_max=16):
         super().__init__()
-
         self.num_classes = num_classes
         self.reg_max = reg_max
-        self.enable_mask_head = enable_mask_head
 
         self.frontend = FrontEnd()
         self.backbone = YOLO11SBackbone()
         self.neck = PANFPN()
-
         self.detection_head = MultiScaleDetectionHead(
             num_classes=num_classes,
-            reg_max=reg_max
+            reg_max=reg_max,
         )
 
-        self.mask_head = (
-            AuxiliaryMaskHead()
-            if enable_mask_head
-            else None
-        )
-
-    def forward(
-        self,
-        x,
-        return_masks=None
-    ):
-        if return_masks is None:
-            return_masks = (
-                self.training
-                and self.enable_mask_head
-            )
-
+    def forward(self, x):
         input_size = x.shape[-2:]
-
         x = self.frontend(x)
-
         backbone_features = self.backbone(x)
-
-        neck_features = self.neck(
-            backbone_features
-        )
-
+        neck_features = self.neck(backbone_features)
         detections = self.detection_head(
             neck_features,
-            image_size=input_size
+            image_size=input_size,
         )
-
-        output = {
+        return {
             "detections": detections,
-            "features": neck_features
+            "features": neck_features,
         }
-
-        if (
-            return_masks
-            and self.mask_head is not None
-        ):
-            output["mask_logits"] = self.mask_head(
-                neck_features["p2"],
-                input_size
-            )
-
-        return output

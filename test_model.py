@@ -24,8 +24,7 @@ def main():
 
     model = HydroWatch(
         num_classes=num_classes,
-        reg_max=16,
-        enable_mask_head=True
+        reg_max=16
     ).to(device)
 
     # ------------------------------------------------------------
@@ -78,10 +77,6 @@ def main():
         print("    decoded boxes:", tuple(pred["boxes"].shape))
         print("    DFL distances:", tuple(pred["distances"].shape))
 
-    print(
-        "\nMask:",
-        tuple(output["mask_logits"].shape)
-    )
 
     # ------------------------------------------------------------
     # Synthetic ground truth
@@ -101,16 +96,9 @@ def main():
                 dtype=torch.long,
                 device=device
             ),
-            "mask": torch.zeros(
-                360, 480,
-                device=device
-            )
         }
     ]
 
-    # Put a small foreground region in the synthetic mask.
-    targets[0]["mask"][80:190, 90:210] = 1.0
-    targets[0]["mask"][190:320, 270:390] = 1.0
 
     # ------------------------------------------------------------
     # Real loss path
@@ -121,15 +109,13 @@ def main():
         lambda_cls=0.5,
         lambda_obj=1.0,
         lambda_dfl=1.5,
-        lambda_mask=1.0,
         top_k=10,
         nwd_scale=12.8
     ).to(device)
 
     losses = criterion(
         output["detections"],
-        targets,
-        mask_logits=output["mask_logits"]
+        targets
     )
 
     print("\nLoss components:")
@@ -236,10 +222,7 @@ def main():
     model.eval()
 
     with torch.no_grad():
-        inference_output = model(
-            x,
-            return_masks=False
-        )
+        inference_output = model(x)
 
     print("\nInference successful.")
     print(

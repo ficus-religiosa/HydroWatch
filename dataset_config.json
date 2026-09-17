@@ -1,0 +1,25 @@
+{
+  "input_size": [
+    480,
+    360
+  ],
+  "datasets": {
+    "trashcan": {
+      "root": "PATH_TO_TRASHCAN"
+    },
+    "seaclear": {
+      "root": "PATH_TO_SEACLEAR",
+      "annotation_file": "PATH_TO_SEACLEAR_COCO_JSON"
+    },
+    "uppd": {
+      "root": "PATH_TO_UPPD"
+    }
+  },
+  "unified_classes": [],
+  "class_mapping": {
+    "trashcan": {},
+    "seaclear": {},
+    "uppd": {}
+  },
+  "note": "Fill this only after inspect_datasets.py reports the complete raw vocabularies. Do not assume numeric IDs match across datasets."
+}

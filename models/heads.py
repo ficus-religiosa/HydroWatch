@@ -202,35 +202,3 @@ class MultiScaleDetectionHead(nn.Module):
             )
         }
 
-
-class AuxiliaryMaskHead(nn.Module):
-    def __init__(self):
-        super().__init__()
-
-        self.body = nn.Sequential(
-            nn.Conv2d(
-                64, 64, 3,
-                padding=1, bias=False
-            ),
-            nn.BatchNorm2d(64),
-            nn.SiLU(),
-
-            nn.Conv2d(
-                64, 32, 3,
-                padding=1, bias=False
-            ),
-            nn.BatchNorm2d(32),
-            nn.SiLU(),
-
-            nn.Conv2d(32, 1, 1)
-        )
-
-    def forward(self, p2, output_size):
-        mask_logits = self.body(p2)
-
-        return F.interpolate(
-            mask_logits,
-            size=output_size,
-            mode="bilinear",
-            align_corners=False
-        )
