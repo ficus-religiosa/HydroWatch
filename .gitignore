@@ -6,3 +6,6 @@ checkpoints/
 *.onnx
 *.engine
 .ipynb_checkpoints/
+D:\zaynu\Documents\coding\PS\3-1\HydroWatch\.gitignore
+datasets/DS*/
+deepsea-mot/
