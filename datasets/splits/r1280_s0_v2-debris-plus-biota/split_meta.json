@@ -1,0 +1,442 @@
+{
+  "created": "2026-09-22 23:19:57",
+  "R": 1280,
+  "seed": 0,
+  "output_folder": "splits/r1280_s0_v2-debris-plus-biota",
+  "taxonomy": {
+    "version": "v2-debris-plus-biota",
+    "file": "taxonomy_v2.json",
+    "sha256": "ece75f401e66de3c906c6fc68544b8a0d2c829be78d556908ff292fdbb6b97c3"
+  },
+  "master_sha256": "bf4dc9850298f81e65cfd1a7ed820b2ab83d8f1f42e2d0bda1fa0c11aac205da",
+  "categories": [
+    {
+      "id": 1,
+      "name": "bottle",
+      "tier": "debris"
+    },
+    {
+      "id": 2,
+      "name": "can_cup",
+      "tier": "debris"
+    },
+    {
+      "id": 3,
+      "name": "soft_debris",
+      "tier": "debris"
+    },
+    {
+      "id": 4,
+      "name": "pipe_tube",
+      "tier": "debris"
+    },
+    {
+      "id": 5,
+      "name": "rope_net",
+      "tier": "debris"
+    },
+    {
+      "id": 6,
+      "name": "rubber",
+      "tier": "debris"
+    },
+    {
+      "id": 7,
+      "name": "wreckage",
+      "tier": "debris"
+    },
+    {
+      "id": 8,
+      "name": "wood",
+      "tier": "debris"
+    },
+    {
+      "id": 9,
+      "name": "other_debris",
+      "tier": "debris"
+    },
+    {
+      "id": 10,
+      "name": "fish",
+      "tier": "biota"
+    },
+    {
+      "id": 11,
+      "name": "invertebrate",
+      "tier": "biota"
+    },
+    {
+      "id": 12,
+      "name": "plant",
+      "tier": "biota"
+    }
+  ],
+  "size_bins": {
+    "geo_cuts": [
+      0.030184,
+      0.065695
+    ],
+    "source": "auto: tertiles of TEST",
+    "object_side_px_at_R": [
+      38.6,
+      84.1
+    ],
+    "area_px": {
+      "small": [
+        0,
+        3358.6
+      ],
+      "medium": [
+        3358.6,
+        15909.9
+      ],
+      "large": [
+        15909.9,
+        10000000000.0
+      ]
+    },
+    "area_note": "box area in stored TEST image pixels (long side 1920); use for COCOeval areaRng"
+  },
+  "splits": {
+    "L_A": {
+      "split": "L_A",
+      "role": "labelled set for teacher and students",
+      "labels": "real",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 1000,
+      "n_annotations": 6532,
+      "n_ignore_zones": 0,
+      "n_images_without_objects": 0,
+      "image_fingerprint": "sha256:545a0d1f1b714530a9b370e4482e9d08473158c62d39d69ee6c16781bfbf3c1d",
+      "content_fingerprint": "sha256:a505a213b779858d93353242dbadef9b14debebeb46945f14dd694d7a2e71ea7",
+      "created": "2026-09-22 23:19:49",
+      "per_class": {
+        "bottle": 765,
+        "can_cup": 123,
+        "soft_debris": 73,
+        "pipe_tube": 96,
+        "rope_net": 1008,
+        "rubber": 150,
+        "wreckage": 295,
+        "wood": 72,
+        "other_debris": 258,
+        "fish": 5,
+        "invertebrate": 3564,
+        "plant": 123
+      },
+      "per_bin": {
+        "small": 850,
+        "medium": 2368,
+        "large": 3314
+      }
+    },
+    "L_B": {
+      "split": "L_B",
+      "role": "L_A plus L_EXTRA folders",
+      "labels": "real",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 8212,
+      "n_annotations": 15343,
+      "n_ignore_zones": 3317,
+      "n_images_without_objects": 876,
+      "image_fingerprint": "sha256:6da3f09e80e8cabce2a950c4208e83373ad6fddc18510869cdd0035faa4f1f98",
+      "content_fingerprint": "sha256:b726bb31d85f1e0867d727818d2a871cc3dd03b6229ca6ce114383c8d3e27554",
+      "created": "2026-09-22 23:19:50",
+      "per_class": {
+        "bottle": 891,
+        "can_cup": 641,
+        "soft_debris": 1268,
+        "pipe_tube": 252,
+        "rope_net": 1252,
+        "rubber": 150,
+        "wreckage": 460,
+        "wood": 408,
+        "other_debris": 3524,
+        "fish": 1112,
+        "invertebrate": 4755,
+        "plant": 630
+      },
+      "per_bin": {
+        "small": 980,
+        "medium": 4140,
+        "large": 10223
+      }
+    },
+    "U_0500": {
+      "split": "U_0500",
+      "role": "pool whose labels are hidden in pseudo-label arms",
+      "labels": "real (Oracle arm)",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 500,
+      "n_annotations": 2824,
+      "n_ignore_zones": 23,
+      "n_images_without_objects": 5,
+      "image_fingerprint": "sha256:e08be27b07fc73098a7ccc65ba8df91c0d821c57adb2946882c3cc9281588970",
+      "content_fingerprint": "sha256:4d4227c0724741224bb26621d81f69ed4a4e340e920d1282a25d98f47c3ba331",
+      "created": "2026-09-22 23:19:52",
+      "per_class": {
+        "bottle": 348,
+        "can_cup": 88,
+        "soft_debris": 29,
+        "pipe_tube": 35,
+        "rope_net": 378,
+        "rubber": 70,
+        "wreckage": 81,
+        "wood": 24,
+        "other_debris": 91,
+        "fish": 1,
+        "invertebrate": 1635,
+        "plant": 44
+      },
+      "per_bin": {
+        "small": 500,
+        "medium": 953,
+        "large": 1371
+      }
+    },
+    "U_1000": {
+      "split": "U_1000",
+      "role": "pool whose labels are hidden in pseudo-label arms",
+      "labels": "real (Oracle arm)",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 1000,
+      "n_annotations": 5454,
+      "n_ignore_zones": 52,
+      "n_images_without_objects": 10,
+      "image_fingerprint": "sha256:817db2c497b1a4fb6699f2c73616f71bf6756559bb984ece202a20967a2a931d",
+      "content_fingerprint": "sha256:e7ca537004cce304be390d567e1afc8b27b107507b1918989d68a82e90a5313b",
+      "created": "2026-09-22 23:19:52",
+      "per_class": {
+        "bottle": 586,
+        "can_cup": 175,
+        "soft_debris": 52,
+        "pipe_tube": 86,
+        "rope_net": 786,
+        "rubber": 138,
+        "wreckage": 148,
+        "wood": 48,
+        "other_debris": 199,
+        "fish": 1,
+        "invertebrate": 3161,
+        "plant": 74
+      },
+      "per_bin": {
+        "small": 985,
+        "medium": 1778,
+        "large": 2691
+      }
+    },
+    "U_1800": {
+      "split": "U_1800",
+      "role": "pool whose labels are hidden in pseudo-label arms",
+      "labels": "real (Oracle arm)",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 1800,
+      "n_annotations": 9892,
+      "n_ignore_zones": 75,
+      "n_images_without_objects": 23,
+      "image_fingerprint": "sha256:54876bdecec8caeddc561b326472db7b883ddfc8ae0bacf1f11b423e300c3896",
+      "content_fingerprint": "sha256:6b96232c75a2a2e3007f73eb45eacc10bae737ac4617bffabf03136bcedd0e92",
+      "created": "2026-09-22 23:19:52",
+      "per_class": {
+        "bottle": 982,
+        "can_cup": 310,
+        "soft_debris": 81,
+        "pipe_tube": 169,
+        "rope_net": 1430,
+        "rubber": 239,
+        "wreckage": 258,
+        "wood": 83,
+        "other_debris": 364,
+        "fish": 2,
+        "invertebrate": 5834,
+        "plant": 140
+      },
+      "per_bin": {
+        "small": 1862,
+        "medium": 3185,
+        "large": 4845
+      }
+    },
+    "U_all": {
+      "split": "U_all",
+      "role": "pool whose labels are hidden in pseudo-label arms",
+      "labels": "real (Oracle arm)",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 2652,
+      "n_annotations": 14604,
+      "n_ignore_zones": 128,
+      "n_images_without_objects": 44,
+      "image_fingerprint": "sha256:2e8d5ca3c5203ba6cfc386437112f7d3f41e488ba083faff01a24dc0035b4e35",
+      "content_fingerprint": "sha256:220a5b7b66ab7c4ba1614f19ecc198d3f4edc19570b073ec3635f7402d49a5c6",
+      "created": "2026-09-22 23:19:53",
+      "per_class": {
+        "bottle": 1469,
+        "can_cup": 499,
+        "soft_debris": 132,
+        "pipe_tube": 271,
+        "rope_net": 2082,
+        "rubber": 366,
+        "wreckage": 384,
+        "wood": 118,
+        "other_debris": 547,
+        "fish": 4,
+        "invertebrate": 8538,
+        "plant": 194
+      },
+      "per_bin": {
+        "small": 2754,
+        "medium": 4683,
+        "large": 7167
+      }
+    },
+    "TEST": {
+      "split": "TEST",
+      "role": "evaluation only",
+      "labels": "real",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 1452,
+      "n_annotations": 5456,
+      "n_ignore_zones": 577,
+      "n_images_without_objects": 39,
+      "image_fingerprint": "sha256:edd5dd3b8927e256b51d5b0b200e42d28dfdd154825fb11eeb23583b115a8966",
+      "content_fingerprint": "sha256:5486911d220fb30b48fec94c5654fa664a5fcfd1accada366b1c9364c036ee12",
+      "created": "2026-09-22 23:19:54",
+      "per_class": {
+        "bottle": 1267,
+        "can_cup": 1010,
+        "soft_debris": 516,
+        "pipe_tube": 161,
+        "rope_net": 66,
+        "rubber": 66,
+        "wreckage": 192,
+        "wood": 255,
+        "other_debris": 562,
+        "fish": 976,
+        "invertebrate": 231,
+        "plant": 154
+      },
+      "per_bin": {
+        "small": 1819,
+        "medium": 1817,
+        "large": 1820
+      }
+    },
+    "CONTROL": {
+      "split": "CONTROL",
+      "role": "separate evaluation only",
+      "labels": "real",
+      "R": 1280,
+      "seed": 0,
+      "taxonomy": "v2-debris-plus-biota",
+      "n_images": 3441,
+      "n_annotations": 3923,
+      "n_ignore_zones": 171,
+      "n_images_without_objects": 163,
+      "image_fingerprint": "sha256:f2ba6ea25c15298da990b903a6ebdfcd9f56f31f92f36061fd56f39b56244d39",
+      "content_fingerprint": "sha256:aeb8cc6913920120314432c2b8429198e852e031e9408b37802e4a5cedc42306",
+      "created": "2026-09-22 23:19:55",
+      "per_class": {
+        "bottle": 101,
+        "soft_debris": 668,
+        "pipe_tube": 1031,
+        "rubber": 2123
+      },
+      "per_bin": {
+        "small": 263,
+        "medium": 768,
+        "large": 2892
+      }
+    }
+  },
+  "dropped_images": [],
+  "config": {
+    "base": ".",
+    "sources": {
+      "trashcan": {
+        "jsons": {
+          "train": "DS1/instance_version/instances_train_trashcan.json",
+          "val": "DS1/instance_version/instances_val_trashcan.json"
+        },
+        "image_dirs": {
+          "train": "DS1/instance_version/train",
+          "val": "DS1/instance_version/val"
+        }
+      },
+      "seaclear": {
+        "json": "DS3/dataset.json",
+        "image_root": "DS3"
+      }
+    },
+    "id_offsets": {
+      "trashcan_train": 1000000,
+      "trashcan_val": 2000000,
+      "seaclear": 3000000
+    },
+    "category_offsets": {
+      "trashcan": 1000,
+      "seaclear": 3000
+    },
+    "expected_images": {
+      "trashcan": 7212,
+      "seaclear": 8610
+    },
+    "duplicates": {
+      "sources": [
+        "seaclear"
+      ],
+      "threshold": 3,
+      "review_range": [
+        2,
+        4
+      ],
+      "review_pairs": 20
+    },
+    "workers": 8,
+    "R": 1280,
+    "resize_sources": [
+      "seaclear"
+    ],
+    "jpeg_quality": 95,
+    "seed": 0,
+    "taxonomy": "taxonomy_v2.json",
+    "L_size": 1000,
+    "U_levels": [
+      500,
+      1000,
+      1800,
+      "all"
+    ],
+    "size_cuts": "auto",
+    "min_support": 50,
+    "cross_role_duplicates": "error",
+    "groups": {
+      "trashcan": "L_EXTRA",
+      "seaclear/Bistrina/Paralenz Vaquita Gen 2": "POOL_L",
+      "seaclear/Bistrina/Bluerobotics HD": "POOL",
+      "seaclear/Bistrina/SIP-E323CV": "POOL",
+      "seaclear/Jakljan/Bluerobotics HD": "TEST",
+      "seaclear/Lokrum/Bluerobotics HD": "TEST",
+      "seaclear/Lokrum/Paralenz Vaquita Gen 2": "TEST",
+      "seaclear/Lokrum/SIP-E323CV": "TEST",
+      "seaclear/Slano/Bluerobotics HD": "TEST",
+      "seaclear/Slano/Paralenz Vaquita": "TEST",
+      "seaclear/Marseille/SIP-E323CV": "CONTROL",
+      "seaclear/Jakljan/Paralenz Vaquita": "EXCL"
+    }
+  }
+}

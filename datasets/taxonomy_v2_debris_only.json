@@ -1,0 +1,112 @@
+{
+  "version": "v2-debris-only",
+  "_notes": [
+    "Identical to v2 except animals and plants are background (not labelled).",
+    "Use it for one comparison: train a baseline with this and with v2, compare debris scores,",
+    "to test whether labelling animals hurts debris detection."
+  ],
+  "unified_classes": [
+    "bottle",
+    "can_cup",
+    "soft_debris",
+    "pipe_tube",
+    "rope_net",
+    "rubber",
+    "wreckage",
+    "wood",
+    "other_debris"
+  ],
+  "tiers": {
+    "debris": [
+      "bottle",
+      "can_cup",
+      "soft_debris",
+      "pipe_tube",
+      "rope_net",
+      "rubber",
+      "wreckage",
+      "wood",
+      "other_debris"
+    ]
+  },
+  "map": {
+    "seaclear": {
+      "bottle_glass": "bottle",
+      "bottle_plastic": "bottle",
+      "jar_glass": "bottle",
+      "can_metal": "can_cup",
+      "cup_plastic": "can_cup",
+      "cup_ceramic": "can_cup",
+      "container_middle_size_metal": "can_cup",
+      "bag_plastic": "soft_debris",
+      "clothing_fiber": "soft_debris",
+      "snack_wrapper_plastic": "soft_debris",
+      "snack_wrapper_paper": "soft_debris",
+      "tarp_plastic": "soft_debris",
+      "pipe_plastic": "pipe_tube",
+      "tube_cement": "pipe_tube",
+      "rope_fiber": "rope_net",
+      "rope_plastic": "rope_net",
+      "cable_metal": "rope_net",
+      "net_plastic": "rope_net",
+      "tire_rubber": "rubber",
+      "boot_rubber": "rubber",
+      "wreckage_metal": "wreckage",
+      "brick_clay": "wreckage",
+      "branch_wood": "wood",
+      "furniture_wood": "wood",
+      "unknown_instance": "other_debris",
+      "cardboard_paper": "other_debris",
+      "container_plastic": "other_debris",
+      "lid_plastic": "other_debris",
+      "sanitaries_plastic": "other_debris"
+    },
+    "trashcan": {
+      "trash_bottle": "bottle",
+      "trash_can": "can_cup",
+      "trash_cup": "can_cup",
+      "trash_bag": "soft_debris",
+      "trash_clothing": "soft_debris",
+      "trash_snack_wrapper": "soft_debris",
+      "trash_tarp": "soft_debris",
+      "trash_pipe": "pipe_tube",
+      "trash_rope": "rope_net",
+      "trash_net": "rope_net",
+      "trash_wreckage": "wreckage",
+      "trash_branch": "wood",
+      "trash_unknown_instance": "other_debris",
+      "trash_container": "other_debris"
+    }
+  },
+  "ignore": {
+    "seaclear": [
+      "rov_cable",
+      "rov_tortuga",
+      "rov_vehicle_leg",
+      "rov_bluerov"
+    ],
+    "trashcan": [
+      "rov"
+    ]
+  },
+  "background": {
+    "seaclear": [
+      "animal_fish",
+      "animal_urchin",
+      "animal_sponge",
+      "animal_shells",
+      "animal_starfish",
+      "animal_etc",
+      "plant"
+    ],
+    "trashcan": [
+      "animal_fish",
+      "animal_eel",
+      "animal_starfish",
+      "animal_shells",
+      "animal_crab",
+      "animal_etc",
+      "plant"
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+make_splits  2026-09-22 23:19:49   R=1280  seed=0  taxonomy=v2-debris-plus-biota
+
+======================================================================================
+1. TAXONOMY
+======================================================================================
+12 classes; annotations -> class: 39403, ignore zone: 4280, background: 0
+
+======================================================================================
+2. FOLDER ROLES
+======================================================================================
+  seaclear/Bistrina/Bluerobotics HD              POOL       1390 imgs
+  seaclear/Bistrina/Paralenz Vaquita Gen 2       POOL_L     2069 imgs
+  seaclear/Bistrina/SIP-E323CV                   POOL        193 imgs
+  seaclear/Jakljan/Bluerobotics HD               TEST        241 imgs
+  seaclear/Jakljan/Paralenz Vaquita              EXCL         65 imgs
+  seaclear/Lokrum/Bluerobotics HD                TEST        556 imgs
+  seaclear/Lokrum/Paralenz Vaquita Gen 2         TEST         77 imgs
+  seaclear/Lokrum/SIP-E323CV                     TEST        339 imgs
+  seaclear/Marseille/SIP-E323CV                  CONTROL    3441 imgs
+  seaclear/Slano/Bluerobotics HD                 TEST        168 imgs
+  seaclear/Slano/Paralenz Vaquita                TEST         71 imgs
+  trashcan                                       L_EXTRA    7212 imgs
+
+======================================================================================
+3. LEAK PROTECTION (near-duplicates and TrashCan videos stay on one side)
+======================================================================================
+training images removed as duplicates of evaluation/L_EXTRA images: 0
+
+======================================================================================
+4. DRAWING THE SPLITS
+======================================================================================
+L_A: 1000 images drawn from POOL_L in whole near-duplicate clusters (0 clusters shared with POOL folders were sent to U whole)
+U: 2652 images, levels U_0500=500, U_1000=1000, U_1800=1800, U_all=2652
+TEST: 1452   CONTROL: 3441   L_EXTRA: 7212
+
+======================================================================================
+5. SIZE BINS (object size = sqrt(box area) / image long side, called 'geo')
+======================================================================================
+cuts 0.0302 / 0.0657  (auto: tertiles of TEST)
+at input size R=1280: small < 39 px, medium 39-84 px, large > 84 px  (object side length)
+to freeze these for all future runs, set in the config:  size_cuts: [0.0302, 0.0657]
+WARNING: resize_index.json not found - split files will point at the original images (run resize_cache.py for faster loading)
+
+======================================================================================
+6. VERIFICATION
+======================================================================================
+no image in two splits; no near-duplicate cluster or TrashCan video crosses a split; U levels are nested; every image file exists
+
+======================================================================================
+7. SPLIT SIZES
+======================================================================================
+split       images  objects  ignore  no-object imgs
+L_A           1000     6532       0               0
+L_B           8212    15343    3317             876
+U_0500         500     2824      23               5
+U_1000        1000     5454      52              10
+U_1800        1800     9892      75              23
+U_all         2652    14604     128              44
+TEST          1452     5456     577              39
+CONTROL       3441     3923     171             163
+
+======================================================================================
+8. CLASS SUPPORT (flag = fewer than 50 in L_A or TEST)
+======================================================================================
+  # class             tier    L_A    L_B  U_all   TEST  flag
+  1 bottle          debris    765    891   1469   1267  
+  2 can_cup         debris    123    641    499   1010  
+  3 soft_debris     debris     73   1268    132    516  
+  4 pipe_tube       debris     96    252    271    161  
+  5 rope_net        debris   1008   1252   2082     66  
+  6 rubber          debris    150    150    366     66  
+  7 wreckage        debris    295    460    384    192  
+  8 wood            debris     72    408    118    255  
+  9 other_debris    debris    258   3524    547    562  
+ 10 fish             biota      5   1112      4    976  LOW
+ 11 invertebrate     biota   3564   4755   8538    231  
+ 12 plant            biota    123    630    194    154  
+
+======================================================================================
+9. OBJECTS PER SIZE BIN
+======================================================================================
+split         small   medium    large
+L_A             850     2368     3314
+L_B             980     4140    10223
+U_0500          500      953     1371
+U_1000          985     1778     2691
+U_1800         1862     3185     4845
+U_all          2754     4683     7167
+TEST           1819     1817     1820
+CONTROL         263      768     2892
+capture efficiency divides by (Oracle - Baseline); a U level with few small objects makes the small-bin ratio unreliable
+
+======================================================================================
+10. TEST: CLASS x SIZE BIN (cells under 30 are too thin for per-class size claims)
+======================================================================================
+class             small   medium    large
+bottle              213      586      468
+can_cup             491      381      138
+soft_debris          30      153      333
+pipe_tube            16       46       99
+rope_net              0        7       59
+rubber                3       22       41
+wreckage             20       98       74
+wood                  0       51      204
+other_debris        137      179      246
+fish                834      139        3
+invertebrate         65       92       74
+plant                10       63       81
+
+======================================================================================
+11. FINGERPRINTS (identical fingerprints = identical data)
+======================================================================================
+L_A        images sha256:545a0d1f1b714530...  content sha256:a505a213b779858d...
+L_B        images sha256:6da3f09e80e8cabc...  content sha256:b726bb31d85f1e08...
+U_0500     images sha256:e08be27b07fc7309...  content sha256:4d4227c072474122...
+U_1000     images sha256:817db2c497b1a4fb...  content sha256:e7ca537004cce304...
+U_1800     images sha256:54876bdecec8caed...  content sha256:6b96232c75a2a2e3...
+U_all      images sha256:2e8d5ca3c5203ba6...  content sha256:220a5b7b66ab7c4b...
+TEST       images sha256:edd5dd3b8927e256...  content sha256:5486911d220fb30b...
+CONTROL    images sha256:f2ba6ea25c15298d...  content sha256:aeb8cc6913920120...
+
+written to splits/r1280_s0_v2-debris-plus-biota/  in 8.5s

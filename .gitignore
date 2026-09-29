@@ -9,3 +9,9 @@ checkpoints/
 D:\zaynu\Documents\coding\PS\3-1\HydroWatch\.gitignore
 datasets/DS*/
 deepsea-mot/
+diag_test/
+*old.py
+runs/
+weights/
+dup_review/
+yolo_ds/

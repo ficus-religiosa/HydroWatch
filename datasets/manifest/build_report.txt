@@ -1,0 +1,67 @@
+build_manifest  2026-09-22 23:19:33   base = D:\zaynu\Documents\coding\PS\3-1\HydroWatch\datasets
+
+======================================================================================
+1. SOURCES
+======================================================================================
+trashcan train:   6065 images    9540 annotations  (DS1/instance_version/instances_train_trashcan.json)
+trashcan val  :   1147 images    2588 annotations  (DS1/instance_version/instances_val_trashcan.json)
+seaclear     :   8610 images   31555 annotations  (DS3/dataset.json)
+
+======================================================================================
+2. IMAGE CHECKS + FINGERPRINTS
+======================================================================================
+all 15822 images exist and match their declared size
+fingerprinted 8610 images from ['seaclear']  (8610 reused from cache)
+
+======================================================================================
+3. ANNOTATIONS
+======================================================================================
+kept 43683 of 43683 annotations
+  boxes clipped to image edge: 3286
+  crowd annotations (become ignore zones in splits): 0
+  polygons dropped (fewer than 3 points or zero area): 0
+  run-length masks dropped (box kept): 0
+
+======================================================================================
+4. NEAR-DUPLICATE CLUSTERS
+======================================================================================
+compared 8610 images (32355 pairs within distance 4) in 1.4s
+threshold 3: 376 clusters of 2+ images covering 3417 images; 5193 images have no near-duplicate
+cluster sizes: 2 imgs x147, 3 imgs x51, 4 imgs x34, 5 imgs x32, 6 imgs x19, 7 imgs x11, 8 imgs x5, 9 imgs x7, 10 imgs x4, 11 imgs x4, 12 imgs x3, 13 imgs x1, 14 imgs x5, 15 imgs x6, 16 imgs x3, 17 imgs x4, 18 imgs x5, 19 imgs x2, 20 imgs x2, 21 imgs x1, 22 imgs x2, 23 imgs x1, 24 imgs x2, 25 imgs x1, 26 imgs x2, 29 imgs x1, 31 imgs x1, 34 imgs x1, 36 imgs x1, 41 imgs x1, 43 imgs x1, 47 imgs x1, 48 imgs x2, 49 imgs x1, 59 imgs x1, 62 imgs x1, 64 imgs x2, 73 imgs x2, 100 imgs x1, 111 imgs x1, 113 imgs x1, 122 imgs x1, 137 imgs x1, 206 imgs x1
+  seaclear/Marseille/SIP-E323CV                 3190 images in clusters
+  seaclear/Lokrum/Bluerobotics HD                 88 images in clusters
+  seaclear/Bistrina/Paralenz Vaquita Gen 2        82 images in clusters
+  seaclear/Bistrina/SIP-E323CV                    45 images in clusters
+  seaclear/Bistrina/Bluerobotics HD                4 images in clusters
+  seaclear/Slano/Bluerobotics HD                   2 images in clusters
+  seaclear/Jakljan/Bluerobotics HD                 2 images in clusters
+  seaclear/Slano/Paralenz Vaquita                  2 images in clusters
+  seaclear/Jakljan/Paralenz Vaquita                2 images in clusters
+clusters spanning more than one folder: 0
+wrote 20 review images (distance 2-4) to manifest/dup_review/
+
+======================================================================================
+5. GROUPS
+======================================================================================
+group                                           images  annotations
+seaclear/Bistrina/Bluerobotics HD                 1390         6986
+seaclear/Bistrina/Paralenz Vaquita Gen 2          2069        13527
+seaclear/Bistrina/SIP-E323CV                       193          751
+seaclear/Jakljan/Bluerobotics HD                   241          793
+seaclear/Jakljan/Paralenz Vaquita                   65          164
+seaclear/Lokrum/Bluerobotics HD                    556         2480
+seaclear/Lokrum/Paralenz Vaquita Gen 2              77          913
+seaclear/Lokrum/SIP-E323CV                         339          691
+seaclear/Marseille/SIP-E323CV                     3441         4094
+seaclear/Slano/Bluerobotics HD                     168          932
+seaclear/Slano/Paralenz Vaquita                     71          224
+trashcan                                          7212        12128
+expected trashcan image count matches (7212)
+expected seaclear image count matches (8610)
+
+======================================================================================
+6. OUTPUT
+======================================================================================
+manifest/master.json        15822 images, 43683 annotations, 62 categories
+manifest/groups.json        manifest/dup_clusters.json   manifest/phash_cache.json
+finished in 12s

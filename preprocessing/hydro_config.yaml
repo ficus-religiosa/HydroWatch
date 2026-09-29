@@ -1,0 +1,72 @@
+# HydroWatch data pipeline settings. This is the only file you normally edit.
+# Relative paths are resolved from the folder this file sits in.
+
+base: "../datasets"                      # folder that holds DS1/ and DS3/ (this file lives there)
+
+# ---------------------------------------------------------------- source datasets
+sources:
+  trashcan:
+    jsons:
+      train: "DS1/instance_version/instances_train_trashcan.json"
+      val:   "DS1/instance_version/instances_val_trashcan.json"
+    image_dirs:
+      train: "DS1/instance_version/train"
+      val:   "DS1/instance_version/val"
+  seaclear:
+    json: "DS3/dataset.json"
+    image_root: "DS3"          # images must sit in DS3/<Site>/<Camera>/
+
+# New ids = offset + original id. The leading digit tells you the source.
+id_offsets:                    # images and annotations
+  trashcan_train: 1000000
+  trashcan_val:   2000000
+  seaclear:       3000000
+category_offsets:
+  trashcan: 1000
+  seaclear: 3000
+
+expected_images:               # build_manifest warns if the counts differ
+  trashcan: 7212
+  seaclear: 8610
+
+# ---------------------------------------------------------------- near-duplicates
+duplicates:
+  sources: [seaclear]          # TrashCan uses its video id as the leak unit instead
+  threshold: 3                 # fingerprints differing in <= 3 of 64 bits = same cluster
+  review_range: [2, 4]         # distance band for the side-by-side check images
+  review_pairs: 20
+
+workers: 8                     # parallel threads for reading images
+
+# ---------------------------------------------------------------- stored copies
+R: 1280                        # training input size (multiple of 32)
+resize_sources: [seaclear]     # TrashCan is not stored; it is enlarged when loaded
+jpeg_quality: 95
+
+# ---------------------------------------------------------------- splits
+seed: 0                        # change only to make a different random draw
+taxonomy: "taxonomy_v2.json"   # relative to base
+L_size: 1000                   # images in L_A
+U_levels: [500, 1000, 1800, all]
+size_cuts: auto                # auto = tertiles of TEST; copy the printed values here to freeze them,
+                               # e.g. size_cuts: [0.0302, 0.0658]
+min_support: 50                # flag classes with fewer objects than this in L_A or TEST
+cross_role_duplicates: error   # error = stop and list them; drop_from_train = remove the training copies
+
+# ---------------------------------------------------------------- folder roles
+# POOL_L  L_A is drawn from here, the rest goes to U      POOL     U only
+# L_EXTRA added to L_A to form L_B                        TEST     scored, never trained on
+# CONTROL scored separately, never trained on             EXCL     not used
+groups:
+  "trashcan":                                   L_EXTRA
+  "seaclear/Bistrina/Paralenz Vaquita Gen 2":   POOL_L
+  "seaclear/Bistrina/Bluerobotics HD":          POOL
+  "seaclear/Bistrina/SIP-E323CV":               POOL
+  "seaclear/Jakljan/Bluerobotics HD":           TEST
+  "seaclear/Lokrum/Bluerobotics HD":            TEST
+  "seaclear/Lokrum/Paralenz Vaquita Gen 2":     TEST
+  "seaclear/Lokrum/SIP-E323CV":                 TEST
+  "seaclear/Slano/Bluerobotics HD":             TEST
+  "seaclear/Slano/Paralenz Vaquita":            TEST
+  "seaclear/Marseille/SIP-E323CV":              CONTROL
+  "seaclear/Jakljan/Paralenz Vaquita":          EXCL

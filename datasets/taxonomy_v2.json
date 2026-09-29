@@ -1,0 +1,118 @@
+{
+  "version": "v2-debris-plus-biota",
+  "_notes": [
+    "12 scored classes: 9 debris + 3 biota. Order of unified_classes = class number 1..12.",
+    "Debris merge rule: a class too thin to stand alone joins the visually nearest class the teacher sees in L_A.",
+    "Biota kept for the application (a cleanup robot must recognise animals) and for the paper.",
+    "fish has ~4 examples in L_A: learnable only through TrashCan (L_B). Report results with and without fish.",
+    "ignore = ROV parts become don't-care zones: no class, no reward, no penalty.",
+    "Classes and originals are never changed in the dataset files; edit this file and rerun make_splits.py."
+  ],
+  "unified_classes": [
+    "bottle",
+    "can_cup",
+    "soft_debris",
+    "pipe_tube",
+    "rope_net",
+    "rubber",
+    "wreckage",
+    "wood",
+    "other_debris",
+    "fish",
+    "invertebrate",
+    "plant"
+  ],
+  "tiers": {
+    "debris": [
+      "bottle",
+      "can_cup",
+      "soft_debris",
+      "pipe_tube",
+      "rope_net",
+      "rubber",
+      "wreckage",
+      "wood",
+      "other_debris"
+    ],
+    "biota": [
+      "fish",
+      "invertebrate",
+      "plant"
+    ]
+  },
+  "map": {
+    "seaclear": {
+      "bottle_glass": "bottle",
+      "bottle_plastic": "bottle",
+      "jar_glass": "bottle",
+      "can_metal": "can_cup",
+      "cup_plastic": "can_cup",
+      "cup_ceramic": "can_cup",
+      "container_middle_size_metal": "can_cup",
+      "bag_plastic": "soft_debris",
+      "clothing_fiber": "soft_debris",
+      "snack_wrapper_plastic": "soft_debris",
+      "snack_wrapper_paper": "soft_debris",
+      "tarp_plastic": "soft_debris",
+      "pipe_plastic": "pipe_tube",
+      "tube_cement": "pipe_tube",
+      "rope_fiber": "rope_net",
+      "rope_plastic": "rope_net",
+      "cable_metal": "rope_net",
+      "net_plastic": "rope_net",
+      "tire_rubber": "rubber",
+      "boot_rubber": "rubber",
+      "wreckage_metal": "wreckage",
+      "brick_clay": "wreckage",
+      "branch_wood": "wood",
+      "furniture_wood": "wood",
+      "unknown_instance": "other_debris",
+      "cardboard_paper": "other_debris",
+      "container_plastic": "other_debris",
+      "lid_plastic": "other_debris",
+      "sanitaries_plastic": "other_debris",
+      "animal_fish": "fish",
+      "animal_urchin": "invertebrate",
+      "animal_sponge": "invertebrate",
+      "animal_shells": "invertebrate",
+      "animal_starfish": "invertebrate",
+      "animal_etc": "invertebrate",
+      "plant": "plant"
+    },
+    "trashcan": {
+      "trash_bottle": "bottle",
+      "trash_can": "can_cup",
+      "trash_cup": "can_cup",
+      "trash_bag": "soft_debris",
+      "trash_clothing": "soft_debris",
+      "trash_snack_wrapper": "soft_debris",
+      "trash_tarp": "soft_debris",
+      "trash_pipe": "pipe_tube",
+      "trash_rope": "rope_net",
+      "trash_net": "rope_net",
+      "trash_wreckage": "wreckage",
+      "trash_branch": "wood",
+      "trash_unknown_instance": "other_debris",
+      "trash_container": "other_debris",
+      "animal_fish": "fish",
+      "animal_eel": "fish",
+      "animal_starfish": "invertebrate",
+      "animal_shells": "invertebrate",
+      "animal_crab": "invertebrate",
+      "animal_etc": "invertebrate",
+      "plant": "plant"
+    }
+  },
+  "ignore": {
+    "seaclear": [
+      "rov_cable",
+      "rov_tortuga",
+      "rov_vehicle_leg",
+      "rov_bluerov"
+    ],
+    "trashcan": [
+      "rov"
+    ]
+  },
+  "background": {}
+}
