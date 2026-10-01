@@ -6,12 +6,10 @@ checkpoints/
 *.onnx
 *.engine
 .ipynb_checkpoints/
-D:\zaynu\Documents\coding\PS\3-1\HydroWatch\.gitignore
 datasets/DS*/
 deepsea-mot/
 diag_test/
 *old.py
-runs/
 weights/
 yolo_ds/
 datasets/manifest/phash_cache.json
@@ -19,3 +17,14 @@ datasets/manifest/dup_review/
 prepro/
 node_modules/
 backend/storage/
+
+# ==============================
+# Training runs
+# ==============================
+/models/hydrowatch_train/runs/*
+
+
+!/models/hydrowatch_train/runs/oracle_v3_more/
+/models/hydrowatch_train/runs/oracle_v3_more/*
+!/models/hydrowatch_train/runs/oracle_v3_more/weights/**
+!/models/hydrowatch_train/runs/oracle_v3_more/weights/
