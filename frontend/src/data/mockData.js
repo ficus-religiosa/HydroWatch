@@ -78,27 +78,27 @@ export const reportOverview = {
 };
 
 export const researchSummary = {
-  title: 'Project Objective',
-  section: 'HydroWatch focuses on marine debris detection and pollution assessment using underwater video analysis to support environmental monitoring and cleanup planning.',
+  title: 'Project objective',
+  section: 'HydroWatch detects marine debris in underwater photos and video, measures how much debris each frame contains, and maps where debris concentrates, to support monitoring and clean-up planning.',
   goals: [
-    'Marine debris detection from underwater imagery',
-    'Video-based object tracking and temporal review',
-    'Pollution severity assessment for field observations',
-    'Hotspot localization for operational response planning',
-    'Research-ready reporting for environmental monitoring teams',
+    'Detect small underwater debris reliably, not only large objects',
+    'Measure debris per photo or frame so surveys can be compared',
+    'Map repeat surveys of the same place into hotspots',
+    'Evaluate honestly: no near-duplicate frames shared between training and testing',
+    'Study how automatically generated labels affect small-object detection',
   ],
   datasetSources: [
-    'Public marine monitoring image and video resources',
-    'Research institution sample collections',
-    'Field survey footage and coastal observation archives',
+    'SeaClear Marine Debris Dataset: shallow-water ROV surveys in Croatia (Bistrina, Lokrum, Slano, Jakljan)',
+    'TrashCan 1.0: deep-sea ROV footage from the JAMSTEC J-EDI archive (training only)',
+    'Leak-free split: near-duplicate frames stay together, and every camera video appears in training, validation and test',
   ],
-  modelInfo: 'Model integration is planned for later stages. The current frontend is designed to support real inference results when the backend and AI pipeline are connected.',
+  modelInfo: 'HydroNet: a COCO-pretrained YOLO11-s detector with an extra fine-grained (stride-4) level for small debris, 1280-pixel input, and a physics branch (haze, water colour, blur) that adapts features to water conditions. It recognises 12 classes: 9 debris types plus fish, invertebrates and plants. On the held-out test set it scores mAP50 0.80 and mAP50-95 0.58.',
   workflow: [
-    'Upload underwater video',
-    'Run detection workflow',
-    'Review detection summary and confidence scores',
-    'Assess pollution severity and risk hotspots',
-    'Generate environmental briefing report',
+    'Upload photos or video, with an optional location',
+    'Sample video frames and detect debris on the GPU',
+    'Review boxes, classes, sizes and confidence frame by frame',
+    'Measure debris per frame and map locations as hotspots',
+    'Download annotated media and the environmental report',
   ],
 };
 

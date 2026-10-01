@@ -1,0 +1,83 @@
+split,distance,image,nearest_train_image
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/1688.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/1689.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/1990.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/1989.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/1995.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/1996.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2005.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2007.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2016.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/1998.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2113.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2114.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2218.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2217.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2237.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2236.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2242.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2244.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2243.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2244.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2345.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2344.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2416.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2417.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2449.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2450.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2454.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2453.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2463.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2464.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2718.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2717.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2780.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2779.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/3237.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/3238.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/3570.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/3569.jpg
+TEST,4,DS3/Bistrina/Paralenz Vaquita Gen 2/3576.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/3575.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3726.jpg,DS3/Lokrum/Bluerobotics HD/3730.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3746.jpg,DS3/Lokrum/Bluerobotics HD/3760.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3778.jpg,DS3/Lokrum/Bluerobotics HD/3776.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3788.jpg,DS3/Lokrum/Bluerobotics HD/3790.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3789.jpg,DS3/Lokrum/Bluerobotics HD/3790.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3791.jpg,DS3/Lokrum/Bluerobotics HD/3790.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3807.jpg,DS3/Lokrum/Bluerobotics HD/3806.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3811.jpg,DS3/Lokrum/Bluerobotics HD/3809.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3819.jpg,DS3/Lokrum/Bluerobotics HD/3818.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3839.jpg,DS3/Lokrum/Bluerobotics HD/3838.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3845.jpg,DS3/Lokrum/Bluerobotics HD/3850.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3846.jpg,DS3/Lokrum/Bluerobotics HD/3836.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3847.jpg,DS3/Lokrum/Bluerobotics HD/3850.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3848.jpg,DS3/Lokrum/Bluerobotics HD/3850.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3894.jpg,DS3/Lokrum/Bluerobotics HD/3896.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/3898.jpg,DS3/Lokrum/Bluerobotics HD/3897.jpg
+TEST,4,DS3/Lokrum/Bluerobotics HD/4089.jpg,DS3/Lokrum/Bluerobotics HD/4090.jpg
+TEST,4,DS3/Jakljan/Bluerobotics HD/4472.jpg,DS3/Jakljan/Bluerobotics HD/4471.jpg
+TEST,4,DS3/Slano/Paralenz Vaquita/4517.jpg,DS3/Slano/Paralenz Vaquita/4518.jpg
+TEST,4,DS3/Bistrina/Bluerobotics HD/578.jpg,DS3/Bistrina/Bluerobotics HD/577.jpg
+TEST,4,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_15-20-08.jpg,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_15-19-03.jpg
+TEST,4,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_15-50-18.jpg,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_15-51-16.jpg
+TEST,4,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_16-20-00.jpg,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_16-26-23.jpg
+VAL,4,DS3/Bistrina/Paralenz Vaquita Gen 2/1692.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/1696.jpg
+VAL,4,DS3/Bistrina/Paralenz Vaquita Gen 2/1694.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/1696.jpg
+VAL,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2115.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2111.jpg
+VAL,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2119.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2116.jpg
+VAL,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2169.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2168.jpg
+VAL,4,DS3/Bistrina/Paralenz Vaquita Gen 2/2343.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/2344.jpg
+VAL,4,DS3/Bistrina/Paralenz Vaquita Gen 2/3242.jpg,DS3/Bistrina/Paralenz Vaquita Gen 2/3240.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4088.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4092.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4096.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4097.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4098.jpg,DS3/Lokrum/Bluerobotics HD/4134.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4102.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4104.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4105.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4106.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4109.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4110.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4111.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4112.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4113.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4116.jpg,DS3/Lokrum/Bluerobotics HD/4091.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4117.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4118.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4121.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4122.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4123.jpg,DS3/Lokrum/Bluerobotics HD/4087.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4124.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4125.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4126.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4127.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4128.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4129.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4130.jpg,DS3/Lokrum/Bluerobotics HD/4139.jpg
+VAL,4,DS3/Lokrum/Bluerobotics HD/4133.jpg,DS3/Lokrum/Bluerobotics HD/4134.jpg
+VAL,4,DS3/Lokrum/Paralenz Vaquita Gen 2/4252.jpg,DS3/Lokrum/Paralenz Vaquita Gen 2/4249.jpg
+VAL,4,DS3/Bistrina/Bluerobotics HD/472.jpg,DS3/Bistrina/Bluerobotics HD/475.jpg
+VAL,4,DS3/Bistrina/Bluerobotics HD/630.jpg,DS3/Bistrina/Bluerobotics HD/628.jpg
+VAL,4,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_16-30-22.jpg,DS3/Lokrum/SIP-E323CV/2021_09_15_10_17_40_Front_fixed_twice_16-33-09.jpg

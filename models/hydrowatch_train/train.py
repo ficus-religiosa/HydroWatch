@@ -10,7 +10,7 @@ train.py - overnight training of the HydroWatch showcase detector.
 
 Model : HydroNet = COCO-pretrained YOLO11-s + P2 head, plus SPD stem, physics conditioning, aux mask head
         and adaptive-NWD assignment (see hydronet.py). 1280 input, fp16.
-Ablate: --no-physics --no-spd --no-aux --no-nwd   Candidates: --dysample --ema-attn
+Ablate: --no-physics --no-spd --no-aux   Opt-in: --nwd   Candidates: --dysample --ema-attn
 Data  : yolo_ds/data.yaml made by prepare_data.py. TEST is never seen until eval_test.py.
 """
 import argparse
@@ -105,8 +105,9 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--name", default="hydronet")
     ap.add_argument("--epochs", type=int, default=None, help="fixed epoch count instead of a time budget")
-    for k in ("physics", "spd", "aux", "nwd"):
+    for k in ("physics", "spd", "aux"):
         ap.add_argument(f"--no-{k}", action="store_true", help=f"ablation: turn off {k}")
+    ap.add_argument("--nwd", action="store_true", help="turn ON adaptive-NWD assignment (off by default)")
     ap.add_argument("--dysample", action="store_true", help="candidate: learned upsampling P3->P2")
     ap.add_argument("--ema-attn", action="store_true", help="candidate: EMA attention on P2/P3 outputs")
     ap.add_argument("--mask-weight", type=float, default=DEFAULT_OPTS["mask_weight"])
@@ -154,7 +155,7 @@ def main():
         sys.exit(f"{a.data} not found - run  python prepare_data.py  first.")
 
     HydroTrainer.hydro_opts = {**DEFAULT_OPTS, "physics": not a.no_physics, "spd": not a.no_spd,
-                               "aux": not a.no_aux, "nwd": not a.no_nwd, "dysample": a.dysample,
+                               "aux": not a.no_aux, "nwd": a.nwd, "dysample": a.dysample,
                                "ema_attn": a.ema_attn, "mask_weight": a.mask_weight}
     if a.init:
         print(f"Continuing from {a.init}: parts and calibration come from that checkpoint (--no-* flags ignored)")

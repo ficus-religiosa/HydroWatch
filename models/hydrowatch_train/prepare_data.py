@@ -15,6 +15,7 @@ import json
 import os
 import random
 import shutil
+import sys
 
 import numpy as np
 from collections import Counter, defaultdict
@@ -85,6 +86,8 @@ def main():
                     help="also train on Marseille (CONTROL). Off by default: huge objects, "
                          "heavy duplication, 4 classes - may skew scale more than it helps")
     ap.add_argument("--val-frac", type=float, default=0.08)
+    ap.add_argument("--val-split", default=None,
+                    help="use this split file (e.g. VAL) as validation instead of carving one from training")
     ap.add_argument("--seaclear-repeat", type=int, default=2,
                     help="list each SeaClear image N times so TrashCan (66%% of images) "
                          "doesn't dominate training. 1 = no oversampling")
@@ -109,19 +112,33 @@ def main():
             anns[an["image_id"]].append(an)
         print(f"loaded {n:8s} {len(d['images']):6d} images")
 
+    if a.val_split:  # ready-made validation split (e.g. from resplit_seaclear.py)
+        d = load_split(a.splits, a.val_split)
+        for im in d["images"]:
+            if im["id"] in images:
+                sys.exit(f"image {im['id']} is in both training and {a.val_split} - split is leaky")
+            images[im["id"]] = im
+        for an in d["annotations"]:
+            anns[an["image_id"]].append(an)
+        val_ids = {im["id"] for im in d["images"]}
+        tr_groups = {im.get("leak_group") for i, im in images.items() if i not in val_ids} - {None}
+        shared = tr_groups & {im.get("leak_group") for im in d["images"]}
+        if shared:
+            sys.exit(f"{len(shared)} near-duplicate groups are in both training and {a.val_split} - split is leaky")
+        print(f"loaded {a.val_split:8s} {len(d['images']):6d} images (validation)")
     # ---- validation: whole duplicate groups of SeaClear training images (never Marseille)
     def is_val_candidate(im):
         return im.get("source") == "seaclear" and "Marseille" not in str(im.get("group", ""))
 
     groups = defaultdict(list)
     for iid, im in images.items():
-        if is_val_candidate(im):
+        if not a.val_split and is_val_candidate(im):
             groups[im.get("leak_group") or f"img:{iid}"].append(iid)
     keys = sorted(groups)
     random.Random(a.seed).shuffle(keys)
     target = a.val_frac * sum(len(v) for v in groups.values())
-    val_ids = set()
-    for k in keys:
+    val_ids = val_ids if a.val_split else set()
+    for k in ([] if a.val_split else keys):
         if len(val_ids) >= target:
             break
         val_ids.update(groups[k])
@@ -156,13 +173,15 @@ def main():
                 counts[split][int(ln.split()[0])] += 1
 
     cls_names = [c["name"] for c in sorted(categories, key=lambda c: c["id"])]
-    yaml_lines = [f"path: {out.as_posix()}", "train: images/train", "val: images/val", "names:"]
+    yaml_lines = [f"path: {out.as_posix()}", "train: images/train", "val: images/val",
+                  f"hydrowatch_splits: {Path(a.splits).resolve().as_posix()}  # scoring uses this split set's TEST",
+                  "names:"]
     yaml_lines += [f"  {i}: {n}" for i, n in enumerate(cls_names)]
     (out / "data.yaml").write_text("\n".join(yaml_lines) + "\n", encoding="utf-8")
 
     print(f"\ntrain: {len(train_ids)} unique images -> {n_files['train']} files "
           f"(SeaClear x{a.seaclear_repeat})")
-    print(f"val  : {len(val_ids)} images from {sum(1 for k in keys if groups[k][0] in val_ids)} groups")
+    print(f"val  : {len(val_ids)} images" + ("" if a.val_split else f" from {len(keys)} groups"))
     n = FALLBACKS["poly"] + FALLBACKS["rect"]
     print(f"outlines: {FALLBACKS['poly']} polygons, {FALLBACKS['rect']} box-shaped fallbacks "
           f"({100 * FALLBACKS['rect'] / max(n, 1):.1f}% - objects with no usable mask)")

@@ -11,9 +11,10 @@ function DetectionTable({ rows }) {
             <tr>
               <th>ID</th>
               <th>Class</th>
+              <th>Type</th>
               <th>Confidence</th>
               <th>Size</th>
-              <th>Location</th>
+              <th>Position (x, y)</th>
             </tr>
           </thead>
           <tbody>
@@ -21,14 +22,16 @@ function DetectionTable({ rows }) {
               <tr key={row.id}>
                 <td>{row.id}</td>
                 <td>{row.label}</td>
+                <td>{row.tier || 'debris'}</td>
                 <td>{row.confidence}%</td>
                 <td>{row.size}</td>
-                <td>{row.x}px, {row.y}px</td>
+                <td>{row.x.toFixed(1)}%, {row.y.toFixed(1)}%</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {!rows.length && <p className="analysis-note">No objects match the current filter in this frame.</p>}
     </div>
   );
 }

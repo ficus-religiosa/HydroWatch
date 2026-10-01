@@ -1,0 +1,803 @@
+{
+ "trash_tree": {
+  "fathomnet": [
+   "1-gallon paint bucket",
+   "55-gallon drum",
+   "abandoned research equipment",
+   "balloon",
+   "bottle",
+   "bottle-2",
+   "briefcase",
+   "broom",
+   "bucket",
+   "can",
+   "cardboard",
+   "cloth",
+   "clothing",
+   "concrete",
+   "fabric",
+   "fishing float",
+   "glass",
+   "golf ball",
+   "leather",
+   "manufactured wood",
+   "metal",
+   "metal fishing trap",
+   "military apparatus",
+   "monofilament line",
+   "net",
+   "pants",
+   "paper",
+   "plastic",
+   "plastic bag",
+   "polypropylene line",
+   "rope",
+   "rope fishing trap",
+   "rubber",
+   "ship container",
+   "ship wreckage",
+   "ship wreckage-2",
+   "shirt",
+   "shoe",
+   "shoe-2",
+   "tape cassette",
+   "tire",
+   "trash",
+   "wood fishing trap"
+  ],
+  "mbari": [
+   "1-gallon paint bucket",
+   "55-gallon drum",
+   "abandoned research equipment",
+   "balloon",
+   "bottle",
+   "bottle-2",
+   "briefcase",
+   "broom",
+   "bucket",
+   "can",
+   "cardboard",
+   "cloth",
+   "clothing",
+   "concrete",
+   "fabric",
+   "fishing float",
+   "glass",
+   "golf ball",
+   "leather",
+   "manufactured wood",
+   "metal",
+   "metal fishing trap",
+   "military apparatus",
+   "monofilament line",
+   "net",
+   "pants",
+   "paper",
+   "plastic",
+   "plastic bag",
+   "polypropylene line",
+   "rope",
+   "rope fishing trap",
+   "rubber",
+   "ship container",
+   "ship wreckage",
+   "ship wreckage-2",
+   "shirt",
+   "shoe",
+   "shoe-2",
+   "tape cassette",
+   "tire",
+   "trash",
+   "wood fishing trap"
+  ]
+ },
+ "name_matches": [
+  "1-gallon paint bucket",
+  "bottle",
+  "bottle-2",
+  "bucket",
+  "can",
+  "cloth",
+  "coral transplant container",
+  "cup coral skeleton",
+  "fabric",
+  "line",
+  "metal",
+  "metal scoop",
+  "mini container array",
+  "net",
+  "plastic",
+  "plastic bag",
+  "polypropylene line",
+  "rope",
+  "rope fishing trap",
+  "rubber",
+  "ship container",
+  "ship wreckage",
+  "tire",
+  "trash"
+ ],
+ "concepts": [
+  {
+   "concept": "trash",
+   "boxes": 93,
+   "images": 82,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 1,
+    "100-500 m": 3,
+    ">500 m": 41,
+    "unknown": 37
+   }
+  },
+  {
+   "concept": "mini container array",
+   "boxes": 67,
+   "images": 63,
+   "in_trash_tree": false,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 63,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "polypropylene line",
+   "boxes": 53,
+   "images": 38,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 4,
+    ">500 m": 34,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "can",
+   "boxes": 49,
+   "images": 35,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 1,
+    ">500 m": 31,
+    "unknown": 3
+   }
+  },
+  {
+   "concept": "ship container",
+   "boxes": 34,
+   "images": 34,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 34,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "cup coral skeleton",
+   "boxes": 24,
+   "images": 10,
+   "in_trash_tree": false,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 10
+   }
+  },
+  {
+   "concept": "metal",
+   "boxes": 23,
+   "images": 20,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 2,
+    ">500 m": 16,
+    "unknown": 2
+   }
+  },
+  {
+   "concept": "plastic bag",
+   "boxes": 22,
+   "images": 22,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 21,
+    "unknown": 1
+   }
+  },
+  {
+   "concept": "55-gallon drum",
+   "boxes": 19,
+   "images": 19,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 19,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "plastic",
+   "boxes": 17,
+   "images": 16,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 15,
+    "unknown": 1
+   }
+  },
+  {
+   "concept": "coral transplant container",
+   "boxes": 16,
+   "images": 10,
+   "in_trash_tree": false,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 10,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "rope",
+   "boxes": 8,
+   "images": 5,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 1,
+    "30-100 m": 0,
+    "100-500 m": 1,
+    ">500 m": 3,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "bottle",
+   "boxes": 7,
+   "images": 7,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 1,
+    ">500 m": 6,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "cardboard",
+   "boxes": 6,
+   "images": 3,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 3,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "military apparatus",
+   "boxes": 5,
+   "images": 5,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 5,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "ship wreckage",
+   "boxes": 5,
+   "images": 5,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 5,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "1-gallon paint bucket",
+   "boxes": 4,
+   "images": 2,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 2,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "tire",
+   "boxes": 4,
+   "images": 4,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 4,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "bottle-2",
+   "boxes": 3,
+   "images": 3,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 3,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "fabric",
+   "boxes": 3,
+   "images": 3,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 3,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "line",
+   "boxes": 3,
+   "images": 3,
+   "in_trash_tree": false,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 2,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "shoe",
+   "boxes": 3,
+   "images": 3,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 3,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "balloon",
+   "boxes": 2,
+   "images": 2,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 2,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "bucket",
+   "boxes": 2,
+   "images": 2,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 1,
+    "unknown": 1
+   }
+  },
+  {
+   "concept": "manufactured wood",
+   "boxes": 2,
+   "images": 2,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 2,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "net",
+   "boxes": 2,
+   "images": 2,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 1,
+    "unknown": 1
+   }
+  },
+  {
+   "concept": "cloth",
+   "boxes": 1,
+   "images": 1,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "metal scoop",
+   "boxes": 1,
+   "images": 1,
+   "in_trash_tree": false,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "rope fishing trap",
+   "boxes": 1,
+   "images": 1,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "rubber",
+   "boxes": 1,
+   "images": 1,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "abandoned research equipment",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "briefcase",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "broom",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "clothing",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "concrete",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "fishing float",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "glass",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "golf ball",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "leather",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "metal fishing trap",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "monofilament line",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "pants",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "paper",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "ship wreckage-2",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "shirt",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "shoe-2",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "tape cassette",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "concept": "wood fishing trap",
+   "boxes": 0,
+   "images": 0,
+   "in_trash_tree": true,
+   "depth": {
+    "<=10 m": 0,
+    "10-30 m": 0,
+    "30-100 m": 0,
+    "100-500 m": 0,
+    ">500 m": 0,
+    "unknown": 0
+   }
+  }
+ ],
+ "total_images": 395,
+ "total_depth": {
+  "<=10 m": 0,
+  "10-30 m": 3,
+  "30-100 m": 1,
+  "100-500 m": 78,
+  ">500 m": 257,
+  "unknown": 56
+ }
+}

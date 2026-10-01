@@ -28,6 +28,20 @@ HERE = Path(__file__).resolve().parent
 DEFAULT_WEIGHTS = HERE / "runs" / "hydronet" / "weights" / "best.pt"
 
 
+def default_splits():
+    """The split set yolo_ds was built from (recorded by prepare_data.py), so scoring can never
+    use a TEST whose images are in the current training data."""
+    try:
+        import yaml
+        from prepare_data import OUT
+        d = yaml.safe_load((Path(OUT) / "data.yaml").read_text(encoding="utf-8"))
+        if d.get("hydrowatch_splits"):
+            return d["hydrowatch_splits"]
+    except Exception:
+        pass
+    return SPLITS
+
+
 def xywh_to_xyxy(b):
     b = np.asarray(b, dtype=np.float32).reshape(-1, 4)
     return np.stack([b[:, 0], b[:, 1], b[:, 0] + b[:, 2], b[:, 1] + b[:, 3]], axis=1)
@@ -69,24 +83,36 @@ def coco_eval(gt, dt, img_ids, cat_ids, cuts, max_det):
             "per_class": {int(c): {"AP": ap(k, 0), "AP_small": ap(k, 1)} for k, c in enumerate(cat_ids)}}
 
 
-def evaluate(weights=DEFAULT_WEIGHTS, base=BASE, splits=SPLITS, imgsz=1280, limit=None, max_det=300, test_json=None):
+def evaluate(weights=DEFAULT_WEIGHTS, base=BASE, splits=None, imgsz=1280, limit=None, max_det=300, test_json=None):
     import torch
     from pycocotools.coco import COCO
     from ultralytics import YOLO
 
-    weights, base, splits = Path(weights), Path(base), Path(splits)
+    weights, base, splits = Path(weights), Path(base), Path(splits or default_splits())
+    print(f"scoring against: {splits.name}")
     test_json = Path(test_json) if test_json else splits / "TEST.json"
     meta = json.loads((splits / "split_meta.json").read_text(encoding="utf-8"))
+    raw = json.loads(test_json.read_text(encoding="utf-8"))
+    L = max(max(im["width"], im["height"]) for im in raw["images"])  # common frame for size bins
+    fac = {im["id"]: L / max(im["width"], im["height"]) for im in raw["images"]}
+    norm = {"images": [{**im, "width": round(im["width"] * fac[im["id"]]),
+                        "height": round(im["height"] * fac[im["id"]])} for im in raw["images"]],
+            "annotations": [], "categories": raw["categories"]}
+    for an in raw["annotations"]:
+        f = fac[an["image_id"]]
+        x, y, w, h = (v * f for v in an["bbox"])
+        norm["annotations"].append({"id": an["id"], "image_id": an["image_id"], "category_id": an["category_id"],
+                                    "bbox": [x, y, w, h], "area": w * h, "iscrowd": an.get("iscrowd", 0)})
+    gt = COCO()
+    gt.dataset = norm
     with contextlib.redirect_stdout(io.StringIO()):
-        gt = COCO(str(test_json))
+        gt.createIndex()
 
-    images = sorted(gt.dataset["images"], key=lambda im: im["id"])
+    images = sorted(raw["images"], key=lambda im: im["id"])  # original records: frame + ignore zones
     if limit:
         images = images[:limit]
-    long_sides = {max(im["width"], im["height"]) for im in images}
-    L = max(long_sides)
-    if len(long_sides) > 1:
-        print(f"WARNING: TEST images have several sizes {sorted(long_sides)}; size bins use {L}")
+    if len({max(im["width"], im["height"]) for im in images}) > 1:
+        print(f"note: TEST mixes image sizes; all boxes are scaled to a {L}-px long side for size bins")
     g1, g2 = meta["size_bins"]["geo_cuts"]          # geo = sqrt(box area) / long side
     cuts = ((g1 * L) ** 2, (g2 * L) ** 2)           # -> box-area cut-offs in stored pixels
 
@@ -110,7 +136,8 @@ def evaluate(weights=DEFAULT_WEIGHTS, base=BASE, splits=SPLITS, imgsz=1280, limi
             cls = r.boxes.cls.cpu().numpy().astype(int)
             keep = drop_in_ignore(xyxy, xywh_to_xyxy(im.get("ignore", [])))
             n_dropped += int((~keep).sum())
-            for (x1, y1, x2, y2), c, k in zip(xyxy[keep], conf[keep], cls[keep]):
+            f = fac[im["id"]]  # record frame -> common frame (same scaling as the ground truth)
+            for (x1, y1, x2, y2), c, k in zip(xyxy[keep] * f, conf[keep], cls[keep]):
                 dets.append({"image_id": im["id"], "category_id": int(k) + 1,
                              "bbox": [float(x1), float(y1), float(x2 - x1), float(y2 - y1)],
                              "score": float(c)})
@@ -161,7 +188,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--weights", default=str(DEFAULT_WEIGHTS))
     ap.add_argument("--base", default=BASE)
-    ap.add_argument("--splits", default=SPLITS)
+    ap.add_argument("--splits", default=None, help="default: the split set yolo_ds was built from")
     ap.add_argument("--imgsz", type=int, default=1280)
     ap.add_argument("--limit", type=int, default=None, help="score only the first N images (quick check)")
     a = ap.parse_args()

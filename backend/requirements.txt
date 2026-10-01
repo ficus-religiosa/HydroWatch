@@ -1,13 +1,10 @@
-fastapi>=0.110.0
-uvicorn[standard]>=0.28.0
-pydantic>=2.6.0
-pydantic-settings>=2.2.0
+# Install into the SAME Python environment you trained HydroNet in (torch 2.6 + CUDA are already there).
+ultralytics==8.4.160   # same version the model was trained with - HydroNet hooks into its internals
+fastapi>=0.110
+uvicorn>=0.29
 python-multipart>=0.0.9
-python-dotenv>=1.0.0
-httpx>=0.27.0
-pillow>=10.0.0
-opencv-python-headless>=4.9.0
-pytest>=8.0.0
-pytest-asyncio>=0.23.0
-imageio-ffmpeg>=0.5.1
- 
+pymongo>=4.6
+imageio-ffmpeg>=0.5    # bundles ffmpeg, so annotated videos are H.264 and play in the browser
+opencv-python
+pillow
+numpy

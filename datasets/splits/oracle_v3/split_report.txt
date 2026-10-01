@@ -1,0 +1,41 @@
+SeaClear: 5104 images -> 4958 clusters at distance <= 2; largest [41, 6, 5, 5, 5], singletons 4881
+folders (camera = one video): 9
+
+assignment per folder:
+   seaclear/Bistrina/Bluerobotics HD: 1388 clusters, 1390 images -> TEST 278 (20%), VAL 139 (10%), TRAIN 973 (70%)
+   seaclear/Bistrina/Paralenz Vaquita Gen 2: 2026 clusters, 2069 images -> TEST 414 (20%), VAL 207 (10%), TRAIN 1448 (70%)
+   seaclear/Bistrina/SIP-E323CV: 164 clusters, 193 images -> TEST 39 (20%), VAL 20 (10%), TRAIN 134 (69%)
+   seaclear/Jakljan/Bluerobotics HD: 240 clusters, 241 images -> TEST 48 (20%), VAL 24 (10%), TRAIN 169 (70%)
+   seaclear/Lokrum/Bluerobotics HD: 486 clusters, 556 images -> TEST 111 (20%), VAL 56 (10%), TRAIN 389 (70%)
+   seaclear/Lokrum/Paralenz Vaquita Gen 2: 77 clusters, 77 images -> TEST 15 (19%), VAL 8 (10%), TRAIN 54 (70%)
+   seaclear/Lokrum/SIP-E323CV: 339 clusters, 339 images -> TEST 68 (20%), VAL 34 (10%), TRAIN 237 (70%)
+   seaclear/Slano/Bluerobotics HD: 167 clusters, 168 images -> TEST 34 (20%), VAL 17 (10%), TRAIN 117 (70%)
+   seaclear/Slano/Paralenz Vaquita: 71 clusters, 71 images -> TEST 15 (21%), VAL 7 (10%), TRAIN 49 (69%)
+TrashCan: 7212 frames in 312 clips -> kept 2165 (<= 8 per clip, near-duplicates <= 2 removed)
+
+images / objects per split:
+   TEST    1022 images {'seaclear': 1022}  5280 objects
+   VAL      512 images {'seaclear': 512}  2874 objects
+   TRAIN   5735 images {'seaclear': 3570, 'trashcan': 2165}  21164 objects
+
+objects per class (TEST / VAL / TRAIN-SeaClear / TRAIN-TrashCan):
+   bottle            690    360   2451     39
+   can_cup           302    305   1025    148
+   soft_debris       141     99    481    350
+   pipe_tube         105     59    364     39
+   rope_net          629    321   2206     90
+   rubber            120     63    399      0
+   wreckage          173     95    603     48
+   wood               87     53    305    109
+   other_debris      273    162    932   1037
+   fish              187     90    708    344
+   invertebrate     2478   1216   8639    395
+   plant              95     51    325    127
+
+new size bins (TEST tertiles): geo 0.0410 / 0.0941  = boxes under 53 / 120 px across at 1280
+
+leakage audit - nearest SeaClear TRAIN image for every TEST/VAL image:
+   TEST  <=2: 0  3-4: 43  5-6: 77  >6: 902
+   VAL   <=2: 0  3-4: 39  5-6: 33  >6: 440
+   <=2 must be 0. Open a few of the 3-4 pairs listed in leakage_audit.csv: if they look like the
+   same scene, re-run with --threshold 4.

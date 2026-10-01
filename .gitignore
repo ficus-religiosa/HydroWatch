@@ -13,5 +13,7 @@ diag_test/
 *old.py
 runs/
 weights/
-dup_review/
 yolo_ds/
+datasets/manifest/phash_cache.json
+datasets/manifest/dup_review/
+prepro/

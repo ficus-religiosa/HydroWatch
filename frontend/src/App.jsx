@@ -1,4 +1,4 @@
-import { Component, useEffect, useMemo, useRef, useState } from 'react';
+import { Component, useEffect, useRef, useState } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
@@ -12,17 +12,14 @@ import ReportSummary from './components/ReportSummary';
 import LoadingState from './components/LoadingState';
 import EmptyState from './components/EmptyState';
 import {
-  dashboardStats,
-  recentAnalysis,
-  debrisDistribution,
   pollutionSummary,
-  hotspots,
   detectionResults,
   reportOverview,
   researchSummary,
   homeCapabilities,
 } from './data/mockData';
-import { analyzeVideo, downloadMedia, generateReport, getHotspots, getReport } from './services/api';
+import { analyzeVideo, downloadMedia, generateReport, getDashboard, getHealth, getHotspots, getReport } from './services/api';
+import { emptyLocation } from './services/location';
 
 const getLabel = (item) => typeof item === 'string' ? item : item?.label || '';
 const getCount = (item) => typeof item === 'object' ? item?.count : null;
@@ -66,7 +63,7 @@ const pageTitles = {
 function App() {
   const [activePage, setActivePage] = useState('Dashboard');
   const [selectedMedia, setSelectedMedia] = useState([]);
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(emptyLocation);
   const [analysisResult, setAnalysisResult] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedFrame, setSelectedFrame] = useState(0);
@@ -76,7 +73,12 @@ function App() {
   const [analysisHotspots, setAnalysisHotspots] = useState([]);
   const [reportData, setReportData] = useState(null);
   const [pollController, setPollController] = useState(null);
-  const [downloadState, setDownloadState] = useState({ loading: false, error: '' });
+  const [downloadState, setDownloadState] = useState({ loading: false, error: '', progress: 0 });
+  const [health, setHealth] = useState(null);
+  const [backendError, setBackendError] = useState('');
+  const [dashboard, setDashboard] = useState(null);
+  const [allHotspots, setAllHotspots] = useState([]);
+  const [debrisOnly, setDebrisOnly] = useState(false);
   const downloadController = useRef(null);
   const reportCache = useRef(new Map());
   const hotspotCache = useRef(new Map());
@@ -98,11 +100,35 @@ function App() {
     return () => controller.abort();
   }, [analysisResult?.analysis_id, analysisResult?.frames, selectedFrame]);
 
-  const pageSubtitle = useMemo(() => {
-    return activePage === 'Dashboard'
-      ? (analysisResult?.model_info?.is_mock ? 'Backend connected - mock inference' : 'Backend connected')
-      : (analysisResult?.model_info?.is_mock ? 'Backend connected - mock inference' : 'Backend connected');
-  }, [activePage, analysisResult?.model_info?.is_mock]);
+  const pageSubtitle = backendError
+    ? 'Backend offline'
+    : health ? `Backend connected - ${health.model.device}${health.model.fp16 ? ', fp16' : ''}` : 'Connecting to backend...';
+
+  useEffect(() => {
+    const controller = new AbortController();
+    getHealth(controller.signal)
+      .then((result) => { setHealth(result); setBackendError(''); })
+      .catch((error) => { if (error.name !== 'AbortError') setBackendError(error.message); });
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    if (activePage !== 'Dashboard') return undefined;
+    const controller = new AbortController();
+    getDashboard(controller.signal)
+      .then((result) => { setDashboard(result); setBackendError(''); })
+      .catch((error) => { if (error.name !== 'AbortError') setBackendError(error.message); });
+    return () => controller.abort();
+  }, [activePage, analysisResult?.analysis_id]);
+
+  useEffect(() => {
+    if (activePage !== 'Hotspots' || analysisResult) return undefined;
+    const controller = new AbortController();
+    getHotspots(null, controller.signal)
+      .then(setAllHotspots)
+      .catch((error) => { if (error.name !== 'AbortError') setAllHotspots([]); });
+    return () => controller.abort();
+  }, [activePage, analysisResult]);
 
   const handleFileSelect = (files) => {
     if (!files.length) return;
@@ -150,12 +176,16 @@ function App() {
 
   const currentFrame = activeAnalysis.frames[selectedFrame] || activeAnalysis.frames[0];
   const isMockInference = activeAnalysis.model_info?.is_mock === true;
-  const visibleObjects = currentFrame.detections.filter(
-    (object) => classFilter === 'All classes' || object.label === classFilter,
-  );
+  const isDebris = (item) => (item.tier || 'debris') === 'debris';
+  const matchesFilter = (object) => (classFilter === 'All classes' || object.label === classFilter) && (!debrisOnly || isDebris(object));
+  const visibleObjects = currentFrame.detections.filter(matchesFilter);
   const matchingFrameIndices = activeAnalysis.frames
     .map((frame, index) => ({ frame, index }))
-    .filter(({ frame }) => classFilter === 'All classes' || frame.detections.some((object) => object.label === classFilter));
+    .filter(({ frame }) => (classFilter === 'All classes' && !debrisOnly) || frame.detections.some(matchesFilter));
+  const filterClasses = activeAnalysis.classes.filter((item) => !debrisOnly || typeof item === 'string' || isDebris(item));
+  const spots = analysisResult ? analysisHotspots : allHotspots;
+  const debrisByClass = (analysisResult?.classes || []).filter(isDebris).map((item) => ({ name: item.label, value: item.count }));
+  const noAnalysis = <EmptyState title="No analysis yet" body="Upload photos or video in Video Analysis, then come back here to review the results." />;
 
   const renderHome = () => (
     <section className="landing-page">
@@ -211,14 +241,18 @@ function App() {
 
   const renderDashboard = () => (
     <div className="page-stack">
+      {backendError && <div className="panel analysis-note">{backendError}</div>}
+      {dashboard && dashboard.totals.analyses === 0 && (
+        <EmptyState title="No analyses yet" body="Upload photos or video in Video Analysis. Totals, recent analyses and the debris mix will appear here." />
+      )}
       <div className="stat-grid">
-        {dashboardStats.filter((stat) => stat.label !== 'Pollution severity').map((stat) => (
+        {(dashboard?.stats || []).map((stat) => (
           <StatCard key={stat.label} {...stat} />
         ))}
       </div>
 
       <div className="content-grid two-col">
-        <ChartCard title="Debris category distribution" data={debrisDistribution} dataKeys={['value']} color="#5ec3ff" />
+        <ChartCard title="Debris mix across all analyses (%)" data={dashboard?.distribution || []} dataKeys={['value']} color="#5ec3ff" />
         <div className="panel dashboard-note">
           <p className="eyebrow">Review workspace</p>
           <h3>Inspect each capture with model-ready media</h3>
@@ -232,13 +266,13 @@ function App() {
             <h3>Recent analysis</h3>
           </div>
           <div className="timeline-list">
-            {recentAnalysis.map((item) => (
+            {(dashboard?.recent || []).map((item) => (
               <div className="timeline-item" key={item.id}>
                 <div>
                   <strong>{item.site}</strong>
                   <p>{item.id}</p>
                 </div>
-                <span>{item.time}</span>
+                <span>{item.time ? new Date(item.time).toLocaleString() : ''}</span>
                 <span className="muted-text">{item.count || 'Media review'}</span>
               </div>
             ))}
@@ -250,7 +284,7 @@ function App() {
             <h3>Recent detection summary</h3>
           </div>
           <div className="summary-list">
-            {debrisDistribution.map((item) => (
+            {(dashboard?.distribution || []).map((item) => (
               <div className="summary-row" key={item.name}>
                 <span>{item.name}</span>
                 <div className="progress-bar">
@@ -315,7 +349,7 @@ function App() {
     </div>
   );
 
-  const renderDetections = () => (
+  const renderDetections = () => (!analysisResult ? noAnalysis : (
     <div className="page-stack">
       <div className="stat-grid small-grid">
         <StatCard label="Detected objects" value={activeAnalysis.totalDetections} change="In selected media" tone="blue" />
@@ -330,7 +364,7 @@ function App() {
           <div className="section-heading">
             <h3>Detection visualization</h3>
           </div>
-          <div className="detection-frame">
+          <div className="detection-frame" style={currentFrame.width && currentFrame.height ? { aspectRatio: `${currentFrame.width} / ${currentFrame.height}`, minHeight: 0 } : undefined}>
             <div className="media-review-frame">
               {currentFrame.mediaUrl ? <img src={currentFrame.mediaUrl} alt={currentFrame.label} /> : <div className="empty-visual">Upload media to preview detections</div>}
             </div>
@@ -397,8 +431,12 @@ function App() {
         <label htmlFor="class-filter">Find a debris class</label>
         <select id="class-filter" value={classFilter} onChange={(event) => setClassFilter(event.target.value)}>
           <option>All classes</option>
-          {activeAnalysis.classes.map((item) => <option key={getLabel(item)}>{getLabel(item)}</option>)}
+          {filterClasses.map((item) => <option key={getLabel(item)}>{getLabel(item)}</option>)}
         </select>
+        <label className="toggle-label" htmlFor="debris-only">
+          <input id="debris-only" type="checkbox" checked={debrisOnly} onChange={(event) => { setDebrisOnly(event.target.checked); setClassFilter('All classes'); }} />
+          Debris only (hide fish, invertebrates and plants)
+        </label>
         <div className="frame-selector" aria-label="Matching frames">
           {matchingFrameIndices.map(({ frame, index }) => <button type="button" className={`timeline-tag ${selectedFrame === index ? 'selected' : ''}`} key={frame.id} onClick={() => setSelectedFrame(index)}>{index + 1}</button>)}
         </div>
@@ -409,14 +447,14 @@ function App() {
           try { await downloadMedia(activeAnalysis, currentFrame, setDownloadState, downloadController.current.signal); }
           catch (error) { setDownloadState({ loading: false, error: error.message }); }
           finally { downloadController.current = null; }
-        }}>{downloadState.loading ? 'Preparing annotated video...' : `Download annotated ${currentFrame.kind === 'video' ? 'video' : 'photo'}`}</button>
+        }}>{downloadState.loading ? `Preparing annotated ${currentFrame.kind === 'video' ? 'video' : 'photo'}${downloadState.progress ? ` (${downloadState.progress}%)` : ''}...` : `Download annotated ${currentFrame.kind === 'video' ? 'video' : 'photo'}`}</button>
         {downloadState.error && <p className="analysis-note">{downloadState.error}</p>}
       </div>
       <DetectionTable rows={visibleObjects} />
     </div>
-  );
+  ));
 
-  const renderPollutionAnalysis = () => (
+  const renderPollutionAnalysis = () => (!analysisResult ? noAnalysis : (
     <div className="page-stack">
       <div className="panel density-panel">
         <div className="section-heading">
@@ -429,14 +467,27 @@ function App() {
             <strong>{currentFrame.label}</strong>
           </div>
           <div>
-            <span>Debris density</span>
+            <span>Debris in this frame</span>
             <strong>{currentFrame.density || activeAnalysis.density}</strong>
           </div>
+          <div>
+            <span>Average across frames</span>
+            <strong>{activeAnalysis.density}</strong>
+          </div>
+          <div>
+            <span>Busiest frame</span>
+            <strong>{activeAnalysis.peakDebris ?? 0} debris</strong>
+          </div>
+          <div>
+            <span>Prototype risk</span>
+            <strong><SeverityBadge value={activeAnalysis.risk || 'Low'} /></strong>
+          </div>
         </div>
+        <p className="analysis-note">Density counts debris detections in each photo or frame (fish, invertebrates and plants are excluded). It is a relative measure: a true items-per-square-metre figure would need the camera's distance to the seabed.</p>
       </div>
 
       <div className="content-grid two-col">
-        <ChartCard title="Debris category distribution" data={debrisDistribution} dataKeys={['value']} color="#4ade80" />
+        <ChartCard title="Debris detected by class" data={debrisByClass} dataKeys={['value']} color="#4ade80" />
         <div className="panel">
           <div className="section-heading"><h3>Density measurements</h3></div>
           <div className="timeline-tags">
@@ -445,24 +496,25 @@ function App() {
         </div>
       </div>
     </div>
-  );
+  ));
 
   const renderHotspots = () => (
     <div className="page-stack">
     {isMockInference && <p className="eyebrow">Demo / mock inference</p>}
       <div className="content-grid two-col map-layout">
-        <HotspotMap hotspots={analysisHotspots.length ? analysisHotspots : (analysisResult ? [] : hotspots)} location={analysisResult?.location || location} />
+        <HotspotMap hotspots={spots} focus={analysisResult?.locationInfo} locationQuery={analysisResult ? analysisResult.location : location.name} />
 
         <div className="panel hotspot-summary-panel">
           <div className="section-heading">
             <h3>Hotspot summary</h3>
           </div>
           <div className="hotspot-list">
-            {(analysisHotspots.length ? analysisHotspots : (analysisResult ? [] : hotspots)).map((spot) => (
+            {!spots.length && <p className="analysis-note">No mapped locations yet. Analyse media with a place name, coordinates or GPS-tagged photos to add one.</p>}
+            {spots.map((spot) => (
               <div key={spot.id} className="hotspot-row">
                 <div>
                   <strong>{spot.name}</strong>
-                  <p>{spot.id}</p>
+                  <p>{spot.is_current ? 'This analysis - ' : ''}{spot.analyses_count ?? 1} survey{spot.analyses_count === 1 ? '' : 's'}, {spot.mean_debris_per_frame ?? '-'} debris per frame</p>
                 </div>
                 <div className="hotspot-meta">
                   <SeverityBadge value={spot.risk} />
@@ -476,7 +528,7 @@ function App() {
     </div>
   );
 
-  const renderReport = () => (
+  const renderReport = () => (!analysisResult ? noAnalysis : (
     <div className="page-stack">
     {reportData?.model_info?.is_mock && <p className="eyebrow">Demo / mock inference</p>}
       <ReportSummary overview={analysisResult ? { ...reportOverview, ...analysisResult, ...(reportData || {}), surveySummary: `Media review for ${analysisResult.media.map((item) => item.name).join(', ')}.` } : reportOverview} />
@@ -487,6 +539,16 @@ function App() {
             <h3>Environmental impact summary</h3>
           </div>
           <p className="analysis-note">{analysisResult?.location ? `Recorded location: ${analysisResult.location}.` : 'No location was supplied for this media review.'} The report summarizes only the uploaded image or video analysis.</p>
+          {analysisResult?.locationInfo && (
+            <ul className="bullet-list">
+              {analysisResult.locationInfo.latitude != null && <li>Coordinates: {analysisResult.locationInfo.latitude}, {analysisResult.locationInfo.longitude}{analysisResult.locationInfo.source ? ` (${analysisResult.locationInfo.source})` : ''}</li>}
+              {analysisResult.locationInfo.water_body && <li>Water body: {analysisResult.locationInfo.water_body}</li>}
+              {analysisResult.locationInfo.depth_m != null && <li>Approximate depth: {analysisResult.locationInfo.depth_m} m</li>}
+              {analysisResult.locationInfo.captured_at && <li>Date filmed: {analysisResult.locationInfo.captured_at}</li>}
+              {analysisResult.locationInfo.notes && <li>Notes: {analysisResult.locationInfo.notes}</li>}
+            </ul>
+          )}
+          {reportData && <p className="analysis-note">Debris detections: {reportData.debris_detections} across {reportData.frames_reviewed} photos/frames ({reportData.density?.value} per frame on average).</p>}
           {reportData?.severity && <div><strong>Prototype severity:</strong> {reportData.severity.category} ({reportData.severity.methodology})</div>}
           {reportData?.impact && <div><strong>Prototype impact:</strong> {reportData.impact.summary} ({reportData.impact.methodology})</div>}
         </div>
@@ -508,7 +570,7 @@ function App() {
         <button type="button" className="secondary-button" onClick={handleGenerateReport}>Download report</button>
       </div>
     </div>
-  );
+  ));
 
   const renderResearch = () => (
     <div className="page-stack">

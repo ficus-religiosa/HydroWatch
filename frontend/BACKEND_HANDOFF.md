@@ -1,5 +1,8 @@
 # HydroWatch Frontend to Backend Handoff
 
+> **Status:** implemented by `../backend` (FastAPI + MongoDB + HydroNet). See `backend/README.md` for the
+> final API, including the extra location fields and the `/api/v1/dashboard` and `/api/v1/health` endpoints.
+
 ## Purpose
 
 The frontend is a React/Vite dashboard for marine debris analysis. It currently uses mock data so the complete user workflow can be demonstrated before backend inference is connected.
