@@ -17,3 +17,5 @@ yolo_ds/
 datasets/manifest/phash_cache.json
 datasets/manifest/dup_review/
 prepro/
+node_modules/
+backend/storage/
